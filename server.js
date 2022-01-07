@@ -7,12 +7,22 @@ import userRoutes from './routes/userRoutes.js'
 import goalsRoutes from './routes/goalRoutes.js'
 import fundsRoutes from './routes/fundRoutes.js'
 import apiRoutes from './routes/api.js'
+import nodemailer from "nodemailer"
+import dotenv from 'dotenv'
+
+global.smtpTransport = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+        user: 'test@savingtracker.com',
+        pass: 'savingtracker@123'
+    }
+}); 
 
 /*const JWT_AUTH_TOKEN = process.env.JWT_AUTH_TOKEN;
 const JWT_REFRESH_TOKEN = process.env.JWT_REFRESH_TOKEN;
 const smsKey = process.env.SMS_SECRET_KEY;*/
-
-import dotenv from 'dotenv'
 
 const PORT = process.env.PORT || 5000
 
@@ -37,6 +47,8 @@ global.LICENSEEXPIRED=4;
 global.frontendURL='http://localhost:'+PORT;
 global.backendURL ='http://localhost:'+PORT;
 
+global.frontendURL='https://saving-tracker-backend.herokuapp.com/';
+global.backendURL ='https://saving-tracker-backend.herokuapp.com/';
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');

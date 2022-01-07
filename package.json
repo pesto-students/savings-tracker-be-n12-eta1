@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/karan-2809/savings-tracker-backend.git"
+    "url": "git+https://github.com/pesto-students/savings-tracker-be-n12-eta1"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/karan-2809/savings-tracker-backend/issues"
+    "url": "https://github.com/pesto-students/savings-tracker-be-n12-eta1/issues"
   },
-  "homepage": "https://github.com/karan-2809/savings-tracker-backend#readme",
+  "homepage": "https://github.com/pesto-students/savings-tracker-be-n12-eta1#readme",
   "dependencies": {
     "express": "^4.17.2",
     "mongoose": "^6.1.4",
@@ -34,7 +34,6 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.6.0",
-    "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "g": "^2.0.1",
     "http-proxy-middleware": "^2.0.1",
