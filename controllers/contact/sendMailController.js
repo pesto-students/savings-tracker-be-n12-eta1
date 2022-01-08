@@ -61,4 +61,7 @@ const sendMail = (async(req,res)=>{
     }
 })
 
-export default sendMail
+//exports.sendMail = sendMail;
+export default {
+    sendMail
+}
