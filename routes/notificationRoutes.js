@@ -8,7 +8,7 @@ router.post('/notifyHelper', function(req,res,next){
 })
 
 //router.post('/submit-contact',verifyUser, sendMailController.sendEmail)
-router.post('/submit-contact',function(req, res){
+router.post('/submit-contact',verifyUser,function(req, res){
 	sendMailController.sendEmail
   });
 

@@ -30,7 +30,8 @@ dotenv.config()
 
 const app = express()
 // connect to mongodb
-mongoose.connect('mongodb://localhost/savings-tracker');
+//mongoose.connect('mongodb://localhost/savings-tracker');
+mongoose.connect('mongosh "mongodb+srv://cluster0.oocng.mongodb.net/savings-tracker" --username khankashifa1996')
 mongoose.Promise = global.Promise;
 
 app.use(express.static('public'));
