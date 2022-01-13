@@ -1,28 +1,28 @@
 import express from 'express'
 import Goals from '../models/goal.js'
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/all', function(req, res,next){
-	try{
 
-        Goals.find({}).then(function(goals){
+router.get('/', function (req, res, next) {
+    try {
+        Goals.find({}).then(function (goals) {
             res.send(goals)
         }).catch(next)
-    }catch(e){
-       res.send({error:true,message:e.message}) 
+    } catch (e) {
+        res.send({error: true, message: e.message})
     }
-})
+});
 
-router.post('/create', function(req, res,next){
-    try{
-    	Goals.create(req.body).then(function(goal){
+router.post('/', function (req, res, next) {
+    try {
+        Goals.create(req.body).then(function (goal) {
             res.send(goal);
         }).catch(next);
-    }catch(e){
-       res.send({error:true,message:e.message}) 
+    } catch (e) {
+        res.send({error: true, message: e.message})
     }
-    
+
 });
 
 export default router

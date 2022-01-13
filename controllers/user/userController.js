@@ -10,30 +10,22 @@ const getUsers = (async(req,res)=>{
      }
  })
 
-const saveMobile = (async(req,res)=>{
+const saveMobile = (async(req,res,next)=>{
     try{
-        console.log("save mobile")
 		//do email send work
-		var input = JSON.parse(JSON.stringify(req.body)); 
-		var phone_number =  JSON.stringify(input.phone_number); 
-        var uid =  JSON.stringify(input.uid);
-        var aud =  JSON.stringify(input.aud);
-        var iss =  JSON.stringify(input.iss);
-        /*if(aud===process.env.FIREBASE_CREDENTIAL_PROJECT_ID && 
-           uid===process.env.FIREBASE_CREDENTIAL_PROJECT_ID &&
-           uid===process.env.FIREBASE_CREDENTIAL_PROJECT_ID ){
-
-            }*/
-
-		Users.findOne({phone_number: phone_number}).then(function(user){
-            user.returning_user = true
-            res.send({code:200,success:true,user:user})
+		var user_id = JSON.parse(JSON.stringify(req.user_id)); 
+		var phone_number =  JSON.parse(JSON.stringify(req.phone_number)); 
+        console.log(user_id,phone_number)
+		Users.findOne({user_id: user_id}).then(function(user){
+            if(user==null){
+                Users.create({user_id:user_id,phone_number:phone_number}).then(function(user){
+                    res.send({code:200,success:true,user:user,returning_user:false})
+                }).catch(next);
+            }
+            res.send({code:200,success:true,user:user,returning_user:true})
         }).catch(next);
 
-        Users.create({phone_number:phone_number}).then(function(user){
-            user.new_user = true
-            res.send({code:200,success:true,user:user})
-        }).catch(next);
+        
 		
     }catch(e){
        res.send({error:true,message:e.message}) 

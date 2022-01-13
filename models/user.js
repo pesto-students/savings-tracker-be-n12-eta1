@@ -2,6 +2,11 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
+    user_id: {
+        type: String,
+        required: [true, 'User Id field is required'],
+        unique: [true, 'User Id is already present']
+    },
 	name: {
         type: String,
         required: [false, 'Name field is optional']
@@ -28,7 +33,7 @@ const UserSchema = new Schema({
         required: [false, 'city field is optional']
     },
     bio: {
-        type: Text,
+        type: String,
         required: [false, 'bio field is optional']
     },
 })

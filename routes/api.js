@@ -3,9 +3,9 @@ import { initializeApp } from 'firebase-admin/app';
 
 const router = express.Router()
 
-router.post('/', function(){
-	console.log("this is test api")
-})
+router.post('/', function () {
+    console.log("this is test api")
+});
 
 router.post('/authenticate',verifyUser,function(req, res){
 	initializeApp({
