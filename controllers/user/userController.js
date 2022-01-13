@@ -16,9 +16,9 @@ const saveMobile = (async(req,res,next)=>{
 		var user_id = JSON.parse(JSON.stringify(req.user_id)); 
 		var phone_number =  JSON.parse(JSON.stringify(req.phone_number)); 
         console.log(user_id,phone_number)
-		Users.findOne({user_id: user_id}).then(function(user){
+		Users.findOne({_id: user_id}).then(function(user){
             if(user==null){
-                Users.create({user_id:user_id,phone_number:phone_number}).then(function(user){
+                Users.create({_id:user_id,phone_number:phone_number}).then(function(user){
                     res.send({code:200,success:true,user:user,returning_user:false})
                 }).catch(next);
             }
