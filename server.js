@@ -15,8 +15,8 @@ global.smtpTransport = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-        user: 'test@savingtracker.com',
-        pass: 'savingtracker@123'
+        user: process.env.EMAIL_ID,
+        pass: process.env.EMAIL_PASSWORD
     }
 }); 
 
@@ -31,7 +31,7 @@ dotenv.config()
 const app = express()
 // connect to mongodb
 //mongoose.connect('mongodb://localhost/savings-tracker');
-mongoose.connect('mongodb+srv://khankashifa1996:6nObyBJh5cml8np6@cluster0.oocng.mongodb.net/savings-tracker')
+mongoose.connect(process.env.MONGO_URL)
 mongoose.Promise = global.Promise;
 
 app.use(express.static('public'));
@@ -45,8 +45,8 @@ global.TRIAL_EXPIRED=3;
 global.LICENSEEXPIRED=4;
 
 
-global.frontendURL='http://localhost:'+PORT;
-global.backendURL ='http://localhost:'+PORT;
+/*global.frontendURL='http://localhost:'+PORT;
+global.backendURL ='http://localhost:'+PORT;*/
 
 global.frontendURL='https://saving-tracker-backend.herokuapp.com/';
 global.backendURL ='https://saving-tracker-backend.herokuapp.com/';

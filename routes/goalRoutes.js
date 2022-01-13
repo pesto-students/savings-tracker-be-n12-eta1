@@ -3,7 +3,7 @@ import Goals from '../models/goal.js'
 
 const router = express.Router()
 
-router.get('/all-goals', function(req, res,next){
+router.get('/all', function(req, res,next){
 	try{
 
         Goals.find({}).then(function(goals){
