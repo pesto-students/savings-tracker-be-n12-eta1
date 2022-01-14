@@ -1,5 +1,3 @@
-// import dotenv from 'dotenv' DONT USE THIS. HAVE SOME ISSUES WITH ENV LOADING. USE THE NPM RUN DEV COMMAND ALTERNATIVE FOR DEVELOPMENT
-
 import path from 'path'
 import express, {json} from "express";
 import mongoose from 'mongoose'
@@ -15,8 +13,6 @@ import nodemailer from "nodemailer"
 import authMiddleware from './middlewares/auth.js';
 
 
-
-
 global.smtpTransport = nodemailer.createTransport({
                                                       host: 'smtp.gmail.com',
                                                       port: 587,
@@ -27,17 +23,29 @@ global.smtpTransport = nodemailer.createTransport({
                                                       }
                                                   });
 
+
+global.smtpTransport = nodemailer.createTransport({
+                                                      host: 'smtp.gmail.com',
+                                                      port: 587,
+                                                      secure: false,
+                                                      auth: {
+                                                          user: process.env.EMAIL_ID,
+                                                          pass: process.env.EMAIL_PASSWORD
+                                                      }
+                                                  });
+
+
 /*const JWT_AUTH_TOKEN = process.env.JWT_AUTH_TOKEN;
 const JWT_REFRESH_TOKEN = process.env.JWT_REFRESH_TOKEN;
 const smsKey = process.env.SMS_SECRET_KEY;*/
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
 
 
-const app = express()
+const app = express();
 // connect to mongodb
-//mongoose.connect('mongodb://localhost/savings-tracker');
-mongoose.connect(`${process.env.MONGO_URL}/savings-tracker`);
+
+mongoose.connect(process.env.MONGO_URL)
 mongoose.Promise = global.Promise;
 
 app.use(express.static('public'));
@@ -51,12 +59,6 @@ global.TRIAL_EXPIRED = 3;
 global.LICENSEEXPIRED = 4;
 
 
-global.frontendURL = 'http://localhost:' + PORT;
-global.backendURL = 'http://localhost:' + PORT;
-
-global.frontendURL = 'https://saving-tracker-backend.herokuapp.com/';
-global.backendURL = 'https://saving-tracker-backend.herokuapp.com/';
-
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -67,8 +69,9 @@ app.use(function (req, res, next) {
 
 
 app.use('/api/goals', authMiddleware, goalsRoutes);
-app.use('/api/users', userRoutes)
-app.use('/api/funds', fundsRoutes)
+
+app.use('/api/users', authMiddleware, userRoutes)
+app.use('/api/funds', authMiddleware, fundsRoutes)
 app.use('/api/notifications', notificationRoutes)
 app.use('', apiRoutes)
 

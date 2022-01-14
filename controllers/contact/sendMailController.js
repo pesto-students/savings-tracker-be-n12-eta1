@@ -3,10 +3,10 @@ import hbs from 'nodemailer-express-handlebars'
 
 const sendMail = (async(req,res)=>{
     try{
-        console.log("notify")
+        //console.log("notify")
 		//do email send work
 		var input = JSON.parse(JSON.stringify(req.body)); 
-		input.user_data=  JSON.stringify(input.user_data);  
+		//input.user_data=  JSON.stringify(input.user_data);  
 
 		//const { Validator } = require('node-input-validator');        
 		const v = new Validator(req.body, {
