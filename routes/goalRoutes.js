@@ -3,9 +3,9 @@ import Goals from '../models/goal.js'
 
 const router = express.Router();
 
-
 router.get('/', function (req, res, next) {
     try {
+
         Goals.find({}).then(function (goals) {
             res.send(goals)
         }).catch(next)
