@@ -57,6 +57,7 @@ const updateFund = (async(req,res,next)=>{
     }
     
 })
+
 const deleteFund = (async(req,res,next)=>{
     try{
         var fund_id = req.query.fund_id
