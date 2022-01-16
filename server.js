@@ -22,13 +22,7 @@ global.smtpTransport = nodemailer.createTransport({
     }
 }); 
 
-
-/*const JWT_AUTH_TOKEN = process.env.JWT_AUTH_TOKEN;
-const JWT_REFRESH_TOKEN = process.env.JWT_REFRESH_TOKEN;
-const smsKey = process.env.SMS_SECRET_KEY;*/
-
 const PORT = process.env.PORT || 5000
-
 
 const app = express()
 // connect to mongodb
