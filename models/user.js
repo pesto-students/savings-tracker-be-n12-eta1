@@ -9,11 +9,12 @@ const UserSchema = new mongoose.Schema({
                                            },
                                            first_name: {
                                                type: String,
-                                               required: [false, '']
+                                               required: [false, ''],
                                            },
                                            last_name: {
                                                type: String,
-                                               required: [false, '']
+                                               required: [false, ''],
+
                                            },
                                            email: {
                                                type: String,
@@ -38,7 +39,8 @@ const UserSchema = new mongoose.Schema({
                                            },
                                            bio: {
                                                type: String,
-                                               required: [false, 'bio field is optional']
+                                               required: [false, 'bio field is optional'],
+                                               maxLength: [300, 'Bio field cannot be more than 300 characters.']
                                            },
                                            currency: {
                                                type: String,

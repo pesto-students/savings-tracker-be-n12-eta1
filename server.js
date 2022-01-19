@@ -3,6 +3,7 @@ import express, {json} from "express";
 import mongoose from 'mongoose'
 
 import userRoutes from './routes/userRoutes.js'
+import portfolioRoutes from './routes/portfolioRoutes.js'
 import goalsRoutes from './routes/goalRoutes.js'
 import fundsRoutes from './routes/fundRoutes.js'
 import nodemailer from "nodemailer"
@@ -67,8 +68,9 @@ global.backendURL = 'https://saving-tracker-backend.herokuapp.com/';
 
 app.use('/api/goals', authMiddleware, goalsRoutes);
 
-app.use('/api/users', authMiddleware, userRoutes)
-app.use('/api/funds', authMiddleware, fundsRoutes)
+app.use('/api/users/portfolio', authMiddleware, portfolioRoutes);
+app.use('/api/users', authMiddleware, userRoutes);
+app.use('/api/funds', authMiddleware, fundsRoutes);
 
 
 const __dirname = path.resolve();
