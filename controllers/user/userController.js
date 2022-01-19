@@ -1,5 +1,6 @@
 import User from '../../models/user.js'
-
+import Goals from '../../models/goal.js'
+import {makeErrorsArray} from "../../utils/errors.js";
 
 const getStatus = (async (req, res, next) => {
     try {
@@ -69,7 +70,7 @@ const getProfile = (async (req, res) => {
     }
 });
 
-const saveProfile = (async (req, res) => {
+const saveProfile = (async (req, res, next) => {
     try {
         const user_id = req.user_id;
 
@@ -86,26 +87,22 @@ const saveProfile = (async (req, res) => {
             user.country = country;
             user.bio = bio;
 
-            await user.save();
+            try {
 
-            res.send({success: true});
+                await user.save();
 
-        }
+                res.send({success: true});
 
-    } catch (e) {
-        res.send({success: false, message: e.message})
-    }
-});
+            }
+            catch (error) {
 
-const getPortfolio = (async (req, res) => {
-    try {
-        const user_id = req.user_id;
+                const responseErrors = makeErrorsArray(error);
+                res.statusCode = 400;
 
-        const user = await User.findOne({user_id: user_id}, ['currency', 'monthly_expenses', 'monthly_income']);
+                res.send({success: false, errors: responseErrors});
 
-        if (user) {
+            }
 
-            res.send({success: true, portfolio: user});
 
         }
 
@@ -114,30 +111,20 @@ const getPortfolio = (async (req, res) => {
     }
 });
 
-const savePortfolio = (async (req, res) => {
-    try {
-        const user_id = req.user_id;
-
-        const {currency, monthly_income, monthly_expenses} = req.body;
-
-        const user = await User.findOne({user_id: user_id});
-
-        if (user) {
-
-            user.currency = currency;
-            user.monthly_income = monthly_income;
-            user.monthly_expenses = monthly_expenses;
-
-            await user.save();
-
-            res.send({success: true});
-
-        }
-
-    } catch (e) {
-        res.send({success: false, message: e.message})
+const getDashboardData = (async(req,res,next)=>{
+    try{
+        const user_id = req.user_id
+        const goals = await Goals.find({user_id:user_id})
+        /*if (goals) {*/
+        res.send({code: 200, success: true, goals: goals});
+        /*} else {
+            res.send({code: 200, success: true, goals: goals});
+        }*/
+    }catch(e){
+        res.send({success:false,message:e.message})
     }
-});
+    
+})
 
 
 //exports.sendMail = sendMail;
@@ -146,6 +133,5 @@ export default {
     getStatus,
     getProfile,
     saveProfile,
-    getPortfolio,
-    savePortfolio
+    getDashboardData
 }

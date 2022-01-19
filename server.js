@@ -3,6 +3,7 @@ import express, {json} from "express";
 import mongoose from 'mongoose'
 
 import userRoutes from './routes/userRoutes.js'
+import portfolioRoutes from './routes/portfolioRoutes.js'
 import goalsRoutes from './routes/goalRoutes.js'
 import fundsRoutes from './routes/fundRoutes.js'
 import notificationRoutes from './routes/notificationRoutes.js'
@@ -47,22 +48,17 @@ global.PAID = 2;
 global.TRIAL_EXPIRED = 3;
 global.LICENSEEXPIRED = 4;
 
-
 app.use(function (req, res, next) {
-
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    // res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    //res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
 
-
 app.use('/api/goals', authMiddleware, goalsRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/users/portfolio', authMiddleware, portfolioRoutes);
 app.use('/api/users', authMiddleware, userRoutes)
 app.use('/api/funds', authMiddleware, fundsRoutes)
-
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
@@ -70,9 +66,6 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 app.get('/', (req, res) => {
     res.send('API is running....')
 });
-
-/*app.use(errorMiddleware.notFound)
-app.use(errorMiddleware.errorHandler)*/
 
 app.listen(
     PORT,

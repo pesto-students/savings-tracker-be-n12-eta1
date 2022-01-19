@@ -10,6 +10,11 @@ const appAuth = (req, res, next) => {
 
     const token = req.get('X-Auth-Token');//header
 
+    if (!token || token === '') {
+        res.status(401).send('Auth Token is required.');
+        return;
+    }
+
     getAuth()
         .verifyIdToken(token)
         .then((decodedToken) => {
@@ -18,7 +23,7 @@ const appAuth = (req, res, next) => {
             return next();
         })
         .catch((error) => {
-            res.getStatus(401).send();
+            res.status(401).send('Invalid Auth token');
         });
 
 };
