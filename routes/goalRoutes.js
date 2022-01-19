@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
     }
 });
 
-router.post('/', function (req, res, next) {
+router.post('/create', function (req, res, next) {
     try {
         Goals.create(req.body).then(function (goal) {
             res.send(goal);

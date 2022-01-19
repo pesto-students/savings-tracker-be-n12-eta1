@@ -11,6 +11,7 @@ import nodemailer from "nodemailer"
 import cors from 'cors';
 
 import authMiddleware from './middlewares/auth.js';
+//require('dotenv').config({ path: '.env' });
 
 
 global.smtpTransport = nodemailer.createTransport({
