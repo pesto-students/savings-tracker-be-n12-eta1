@@ -10,5 +10,4 @@ router.post('/onboarding', userController.onboarding);
 router.get('/profile', userController.getProfile);
 router.post('/profile', userController.saveProfile);
 
-
 export default router

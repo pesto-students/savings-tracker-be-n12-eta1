@@ -21,9 +21,18 @@ const PortfolioSchema = new mongoose.Schema({
                                                     required: [true, 'Frequency is required'],
                                                     enum: ['Recurring', 'One Time']
                                                 },
+                                                frequency_type: {
+                                                    type: String,
+                                                    required: [false, 'Frequency is required'],
+                                                    enum: ['Day', 'Week', 'Month']
+                                                },
+                                                frequency_unit: {
+                                                    type: Number,
+                                                    required: [false, 'Frequency is required'],
+                                                },
                                                 amount: {
                                                     type: Number,
-                                                    required: [true, 'The Amount is required'],
+                                                    required: [true, 'Amount is required'],
 
                                                 },
                                                 created_date: {

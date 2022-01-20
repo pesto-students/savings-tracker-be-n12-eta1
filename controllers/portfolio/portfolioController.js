@@ -34,7 +34,7 @@ const addPortfolio = (async (req, res) => {
     try {
         const user_id = req.user_id;
 
-        const {type, start_date, end_date, amount, frequency, description} = req.body;
+        const {type, start_date, end_date, amount, frequency, frequency_type, frequency_unit, description} = req.body;
 
         const portfolio = new Portfolio({
                                             user_id,
@@ -43,6 +43,8 @@ const addPortfolio = (async (req, res) => {
                                             end_date,
                                             amount,
                                             frequency,
+                                            frequency_type,
+                                            frequency_unit,
                                             description,
                                             created_date: new Date
                                         });
@@ -68,7 +70,7 @@ const updatePortfolio = (async (req, res) => {
         const user_id = req.user_id;
         const portfolioId = req.params.portfolioId;
 
-        const {type, start_date, end_date, amount, frequency, description} = req.body;
+        const {type, start_date, end_date, amount, frequency, frequency_type, frequency_unit, description} = req.body;
 
         const portfolio = await Portfolio.findOne({user_id, _id: portfolioId});
 
@@ -82,6 +84,8 @@ const updatePortfolio = (async (req, res) => {
         portfolio.end_date = end_date;
         portfolio.amount = amount;
         portfolio.frequency = frequency;
+        portfolio.frequency_type = frequency_type;
+        portfolio.frequency_unit = frequency_unit;
         portfolio.description = description;
 
         await portfolio.save();
