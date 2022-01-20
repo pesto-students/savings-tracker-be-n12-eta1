@@ -20,7 +20,7 @@ const GoalSchema = new Schema({
                                       required: [true, 'Total Amount field is required']
                                   },
                                   end_date: {
-                                      type: String,
+                                      type: Date,
                                       required: [true, 'End Date is required']
                                   },
                               });
