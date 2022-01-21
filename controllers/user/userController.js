@@ -1,6 +1,7 @@
 import User from '../../models/user.js'
 import Goals from '../../models/goal.js'
 import {makeErrorsArray} from "../../utils/errors.js";
+import Portfolio from '../../models/portfolio.js';
 
 const getStatus = (async (req, res, next) => {
     try {
@@ -114,12 +115,29 @@ const saveProfile = (async (req, res, next) => {
 const getDashboardData = (async(req,res,next)=>{
     try{
         const user_id = req.user_id
-        const goals = await Goals.find({user_id:user_id})
-        /*if (goals) {*/
-        res.send({code: 200, success: true, goals: goals});
-        /*} else {
-            res.send({code: 200, success: true, goals: goals});
-        }*/
+        var dashboard = {}
+        const goals = await Goals.aggregate([
+            {
+                $group:
+                {
+                    _id: "$status" ,
+                    count:{$sum:1}
+                },  
+                
+                  
+            }/*,{
+                $match: { "user_id": user_id }
+            }*/
+        ])//.match({ user_id: user_id })
+        //const goals = await Goals.find({user_id:user_id})
+        const portfolio = await Portfolio.findOne({user_id:user_id,frequency:'One Time'})
+        // for(var i=0;i<goals.length;i++){
+
+        // }
+        dashboard.goals = goals
+        dashboard.salary = (portfolio)?portfolio.amount:0;
+        res.send({code: 200, success: true, dashboard: dashboard});
+
     }catch(e){
         res.send({success:false,message:e.message})
     }

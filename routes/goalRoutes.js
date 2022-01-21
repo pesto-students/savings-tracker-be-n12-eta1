@@ -1,5 +1,6 @@
 import express from 'express'
 import Goals from '../models/goal.js'
+import goalsController from '../controllers/goal/goalController.js'
 
 const router = express.Router();
 
@@ -14,15 +15,6 @@ router.get('/', function (req, res, next) {
     }
 });
 
-router.post('/create', function (req, res, next) {
-    try {
-        Goals.create(req.body).then(function (goal) {
-            res.send(goal);
-        }).catch(next);
-    } catch (e) {
-        res.send({error: true, message: e.message})
-    }
-
-});
+router.post('/create', goalsController.createGoal);
 
 export default router

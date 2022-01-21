@@ -4,14 +4,14 @@ const Schema = mongoose.Schema;
 
 const GoalSchema = new Schema({
                                   user_id: {
-                                      type: Number,
+                                      type: String,
                                       required: [true, 'User ID field is required']
                                   },
                                   title: {
                                       type: String,
                                       required: [true, 'Title field is required']
                                   },
-                                  getStatus: {
+                                  status: {
                                       type: String,
                                       required: [false, 'Status field is required']
                                   },
@@ -19,8 +19,12 @@ const GoalSchema = new Schema({
                                       type: String,
                                       required: [true, 'Total Amount field is required']
                                   },
+                                  start_date: {
+                                    type: Date,
+                                    required: [true, 'Start Date is required']
+                                },
                                   end_date: {
-                                      type: String,
+                                      type: Date,
                                       required: [true, 'End Date is required']
                                   },
                               });
