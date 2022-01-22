@@ -16,10 +16,10 @@ const getGoals = (async (req, res) => {
         const options = {
             page: page,
             limit: limit
-          };
+        };
 
         const Goals = await Goal.paginate({}, options, function (err, result) {
-            
+
             return result;
         });
 
@@ -46,17 +46,17 @@ const addGoal = (async (req, res) => {
     try {
         const user_id = req.user_id;
         const {title, description, total_amount, end_date} = req.body;
-     
+
         const goal = new Goal({
-                                user_id,
-                                title,
-                                description,
-                                total_amount,
-                                end_date
-                            });
+                                  user_id,
+                                  title,
+                                  description,
+                                  total_amount,
+                                  end_date
+                              });
 
         await goal.save();
-        
+
         res.send({success: true, goal, message: 'Goal added successfully'});
 
 
