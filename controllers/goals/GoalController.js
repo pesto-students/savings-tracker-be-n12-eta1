@@ -6,19 +6,42 @@ import {makeErrorsArray} from "../../utils/errors.js";
 const getGoals = (async (req, res) => {
     try {
         const user_id = req.user_id;
-        console.log(req.query);
-        const params = req.query;
 
+        const params = req.query;
+        const searchData = JSON.parse(params.searchData);
         // get pagination data
         let limit = params.perPage || 6;
         let page = params.page || 1;
+        let search = searchData.search || '';
+        let orderBy = searchData.order_by || 'start_date';
+        let sortBy = searchData.sort_by || 'desc';
+        let status = searchData.status || 'All';
+        let start_date = searchData.start_date || '';
+        let end_date = searchData.end_date || '';
 
         const options = {
             page: page,
-            limit: limit
+            limit: limit,
+            sort: { [orderBy]: sortBy }
           };
 
-        const Goals = await Goal.paginate({}, options, function (err, result) {
+        const query = {}
+
+        if(status !== 'All'){
+            query.status = status
+        }
+        
+        if(search !== ''){
+            query.title = {'$regex':`^${search}`,  '$options': 'i'}
+        }
+
+        if(start_date !== '' && end_date !== ''){
+            query.start_date = {$gte: start_date, $lt: end_date}
+        }
+
+        console.log(query)
+
+        const Goals = await Goal.paginate(query, options, function (err, result) {
             
             return result;
         });
@@ -46,7 +69,6 @@ const addGoal = (async (req, res) => {
     try {
         const user_id = req.user_id;
         const {title, description, total_amount, end_date} = req.body;
-     
         const goal = new Goal({
                                 user_id,
                                 title,
@@ -76,25 +98,23 @@ const updateGoal = (async (req, res) => {
         const user_id = req.user_id;
         const GoalId = req.params.GoalId;
 
-        const {type, start_date, end_date, amount, frequency, description} = req.body;
+        const {title, description, total_amount, end_date} = req.body;
 
-        const Goal = await Goal.findOne({user_id, _id: GoalId});
+        const data = await Goal.findOne({user_id, _id: GoalId});
 
-        if (!Goal) {
-            res.send({success: false, message: 'Not Found'});
+        if (!data) {
+            res.send({success: false, message: 'Goal Not Found'});
             return;
         }
 
-        Goal.type = type;
-        Goal.start_date = start_date;
-        Goal.end_date = end_date;
-        Goal.amount = amount;
-        Goal.frequency = frequency;
-        Goal.description = description;
+        data.title = title;
+        data.description = description;
+        data.end_date = end_date;
+        data.total_amount = total_amount;
 
-        await Goal.save();
+        await data.save();
 
-        res.send({success: true, Goal});
+        res.send({success: true, Goal, message: 'Goal updated successfully'});
 
     }
     catch (error) {
@@ -111,13 +131,12 @@ const updateGoal = (async (req, res) => {
 const deleteGoal = (async (req, res) => {
     try {
         const user_id = req.user_id;
-        const GoalId = req.params.GoalId;
+        const goalId = req.params.GoalId;
 
-
-        const result = await Goal.deleteOne({user_id, _id: GoalId});
+        const result = await Goal.deleteOne({user_id, _id: goalId});
 
         if (result && result.deletedCount === 1) {
-            res.send({success: true});
+            res.send({success: true, message: 'Goal deleted successfully'});
         }
         else {
             res.send({success: false, message: 'Not Found'});

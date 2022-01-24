@@ -22,7 +22,7 @@ const GoalSchema = new Schema({
                                       default: 'active'
                                   },
                                   total_amount: {
-                                      type: String,
+                                      type: Number,
                                       required: [true, 'Total Amount field is required']
                                   },
                                   start_date: {
