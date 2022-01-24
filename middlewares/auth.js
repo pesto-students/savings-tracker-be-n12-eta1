@@ -18,12 +18,9 @@ const appAuth = (req, res, next) => {
     getAuth()
         .verifyIdToken(token)
         .then((decodedToken) => {
-
             req.user_id = decodedToken.uid;
             req.phone_number = decodedToken.phone_number;
             return next();
-
-
         })
         .catch((error) => {
             res.status(401).send('Invalid Auth token');

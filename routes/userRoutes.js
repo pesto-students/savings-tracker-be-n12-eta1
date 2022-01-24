@@ -10,5 +10,9 @@ router.post('/onboarding', userController.onboarding);
 router.get('/profile', userController.getProfile);
 router.post('/profile', userController.saveProfile);
 
+<<<<<<< HEAD
+=======
+router.get('/dashboard',userController.getDashboardData);
+>>>>>>> origin/feature/dashboard-api
 
 export default router

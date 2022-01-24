@@ -1,7 +1,6 @@
 import { Validator } from 'node-input-validator'
-import hbs from 'nodemailer-express-handlebars'
 
-const sendMail = (async(req,res)=>{
+const sendMail = (async(req,res,next)=>{
     try{
         //console.log("notify")
 		//do email send work
