@@ -1,20 +1,12 @@
-import express from 'express'
-import Goals from '../models/goal.js'
-import goalsController from '../controllers/goal/goalController.js'
+import express from 'express';
+import GoalController from '../controllers/goals/GoalController.js';
 
 const router = express.Router();
 
-router.get('/', function (req, res, next) {
-    try {
+router.get('/', GoalController.getGoals);
+router.post('/', GoalController.addGoal);
+router.put('/:GoalId', GoalController.updateGoal);
+router.delete('/:GoalId', GoalController.deleteGoal);
 
-        Goals.find({}).then(function (goals) {
-            res.send(goals)
-        }).catch(next)
-    } catch (e) {
-        res.send({error: true, message: e.message})
-    }
-});
-
-router.post('/create', goalsController.createGoal);
 
 export default router
