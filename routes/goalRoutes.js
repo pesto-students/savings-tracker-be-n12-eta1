@@ -8,4 +8,5 @@ router.post('/', GoalController.addGoal);
 router.put('/:GoalId', GoalController.updateGoal);
 router.delete('/:GoalId', GoalController.deleteGoal);
 
+
 export default router

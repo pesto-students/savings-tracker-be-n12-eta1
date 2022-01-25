@@ -2,20 +2,6 @@ import mongoose from 'mongoose'
 
 
 const UserSchema = new mongoose.Schema({
-                                           user_id: {
-                                               type: String,
-                                               required: [true, 'User Id field is required'],
-                                               unique: [true, 'User Id is already present']
-                                           },
-                                           first_name: {
-                                               type: String,
-                                               required: [false, ''],
-                                           },
-                                           last_name: {
-                                               type: String,
-                                               required: [false, ''],
-
-                                           },
                                            email: {
                                                type: String,
                                                required: [false, 'Email field is optional']
@@ -47,6 +33,7 @@ const UserSchema = new mongoose.Schema({
                                                required: [true, 'A Valid currency is required']
                                            },
                                        });
+
 
 const User = mongoose.model('user', UserSchema);
 

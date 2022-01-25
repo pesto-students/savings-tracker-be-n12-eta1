@@ -1,5 +1,7 @@
 import User from '../../models/user.js'
+import Goals from '../../models/goal.js'
 import {makeErrorsArray} from "../../utils/errors.js";
+import Portfolio from '../../models/portfolio.js';
 
 const getStatus = (async (req, res, next) => {
     try {
@@ -112,12 +114,61 @@ const saveProfile = (async (req, res, next) => {
     }
 });
 
+const getDashboardData = (async(req,res,next)=>{
+    try{
+        const user_id = req.user_id
+        var dashboard = {}
+        const goals = await Goals.aggregate([
+            {
+                $group:
+                {
+                    _id: "$status" ,
+                    count:{$sum:1}
+                },  
+                
+                  
+            }/*,{
+                $match: { "user_id": user_id }
+            }*/
+        ])//.match({ user_id: user_id })
+        //const goals = await Goals.find({user_id:user_id})
+        var end_data=  new Date()
+        var d = new Date()
+        var start_date = d.setMonth(d.getMonth() - 1);
+        const portfolio = await Portfolio.findOne({user_id:user_id,frequency:'One Time'})
+        const incomes = await Portfolio.find({user_id:user_id,type:'Income',frequency: { $ne: 'One Time' },start_date: { $gte: start_date }})
+        const expenses = await Portfolio.find({user_id:user_id,type:'Expenses',frequency: { $ne: 'One Time' },start_date: { $gte: start_date }})
+        var income_graph = [] 
+        var expense_graph = []
+        income_graph[0] = 'Incomes'
+        expense_graph[0] = 'Expenses'
+
+        for(var i =0;i<incomes.length;i++){
+            if(typeof incomes[i]!=='undefined')
+                income_graph[i+1]  = (incomes[i].start_date.toLocaleDateString(),incomes[i].amount);
+        }
+
+        for(var e =0;e<expenses.length;e++){
+            if(typeof expenses[e]!=='undefined')
+                expense_graph[e+1]=(expenses[e].start_date.toLocaleDateString(),expenses[e].amount);
+        }
+        dashboard.chart_data=  [income_graph,expense_graph ]
+        dashboard.goals = goals
+        dashboard.salary = (portfolio)?portfolio.amount:0;
+        res.send({code: 200, success: true, dashboard: dashboard});
+
+    }catch(e){
+        res.send({success:false,message:e.message})
+    }
+    
+})
+
 
 //exports.sendMail = sendMail;
 export default {
     onboarding,
     getStatus,
     getProfile,
-    saveProfile
-
+    saveProfile,
+    getDashboardData
 }
