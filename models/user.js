@@ -39,20 +39,12 @@ const UserSchema = new mongoose.Schema({
                                            },
                                            bio: {
                                                type: String,
-                                               required: [false, 'bio field is optional'],
+                                               required: [false],
                                                maxLength: [300, 'Bio field cannot be more than 300 characters.']
                                            },
                                            currency: {
                                                type: String,
                                                required: [true, 'A Valid currency is required']
-                                           },
-                                           monthly_income: {
-                                               type: Number,
-                                               required: [false, '']
-                                           },
-                                           monthly_expenses: {
-                                               type: Number,
-                                               required: [false, '']
                                            },
                                        });
 

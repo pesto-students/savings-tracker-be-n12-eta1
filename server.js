@@ -6,6 +6,7 @@ import userRoutes from './routes/userRoutes.js'
 import portfolioRoutes from './routes/portfolioRoutes.js'
 import goalsRoutes from './routes/goalRoutes.js'
 import fundsRoutes from './routes/fundRoutes.js'
+import subscriptionRoutes from './routes/subscriptionRoutes.js'
 import nodemailer from "nodemailer"
 
 import cors from 'cors';
@@ -50,6 +51,8 @@ app.use('/api/goals', authMiddleware, goalsRoutes);
 app.use('/api/users/portfolio', authMiddleware, portfolioRoutes);
 app.use('/api/users', authMiddleware, userRoutes);
 app.use('/api/funds', authMiddleware, fundsRoutes);
+
+app.use('/api/subscription', authMiddleware, subscriptionRoutes);
 
 
 const __dirname = path.resolve();
