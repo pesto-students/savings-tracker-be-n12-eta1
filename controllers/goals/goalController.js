@@ -1,7 +1,5 @@
 import Goal from "../../models/goal.js";
-import User from "../../models/user.js";
 import {makeErrorsArray} from "../../utils/errors.js";
-
 
 const getGoals = (async (req, res) => {
     try {
@@ -22,40 +20,27 @@ const getGoals = (async (req, res) => {
         const options = {
             page: page,
             limit: limit,
-            sort: { [orderBy]: sortBy }
-          };
+            sort: {[orderBy]: sortBy}
+        };
 
-        const query = {}
+        const query = {user_id};
 
-        if(status !== 'All'){
+        if (status !== 'All') {
             query.status = status
         }
-        
-        if(search !== ''){
-            query.title = {'$regex':`^${search}`,  '$options': 'i'}
+
+        if (search !== '') {
+            query.title = {'$regex': `^${search}`, '$options': 'i'}
         }
 
-        if(start_date !== '' && end_date !== ''){
+        if (start_date !== '' && end_date !== '') {
             query.start_date = {$gte: start_date, $lt: end_date}
         }
 
-        console.log(query)
+        const Goals = await Goal.paginate(query, options);
 
-        const Goals = await Goal.paginate(query, options, function (err, result) {
-            
-            return result;
-        });
 
-        if (Goals) {
-
-            res.send({success: true, goals: Goals, message: 'Goal fetch successfully'});
-
-        }
-        else {
-            res.send({success: true, Goals: [], message: 'Goal fetch successfully'});
-
-        }
-
+        res.send({success: true, goals: Goals, message: 'Goal fetch successfully'});
     } catch (error) {
 
         const responseErrors = makeErrorsArray(error);
@@ -69,16 +54,17 @@ const addGoal = (async (req, res) => {
     try {
         const user_id = req.user_id;
         const {title, description, total_amount, end_date} = req.body;
+
         const goal = new Goal({
-                                user_id,
-                                title,
-                                description,
-                                total_amount,
-                                end_date
-                            });
+                                  user_id,
+                                  title,
+                                  description,
+                                  total_amount,
+                                  end_date
+                              });
 
         await goal.save();
-        
+
         res.send({success: true, goal, message: 'Goal added successfully'});
 
 

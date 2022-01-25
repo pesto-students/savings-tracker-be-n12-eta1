@@ -30,6 +30,8 @@ const onboarding = (async (req, res) => {
 
         const user = await User.findOne({user_id: user_id});
 
+        //todo check if already done
+
         if (user) {
             user.first_name = first_name;
             user.last_name = last_name;

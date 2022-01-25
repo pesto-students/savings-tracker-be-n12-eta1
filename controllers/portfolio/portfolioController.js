@@ -9,7 +9,9 @@ const getPortfolio = (async (req, res) => {
 
         const user = await User.findOne({user_id}, ['currency']);
 
-        const portfolios = await Portfolio.find({user_id});
+        const portfolios = await Portfolio.find({user_id}).sort({
+                                                                    created_date: -1
+                                                                });
 
         if (portfolios) {
 
