@@ -54,13 +54,14 @@ const addGoal = (async (req, res) => {
     try {
         const user_id = req.user_id;
         const {title, description, total_amount, end_date} = req.body;
-
+        const status = "Recent"
         const goal = new Goal({
                                   user_id,
                                   title,
                                   description,
                                   total_amount,
-                                  end_date
+                                  end_date,
+                                  status
                               });
 
         await goal.save();

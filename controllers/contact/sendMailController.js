@@ -2,20 +2,18 @@ import { Validator } from 'node-input-validator'
 
 const sendMail = (async(req,res,next)=>{
     try{
-        //console.log("notify")
-		//do email send work
-		var input = JSON.parse(JSON.stringify(req.body)); 
-		//input.user_data=  JSON.stringify(input.user_data);  
 
-		//const { Validator } = require('node-input-validator');        
+		var input = JSON.parse(JSON.stringify(req.body)); 
+		console.log(req.body,input)
 		const v = new Validator(req.body, {
 			email: 'required',
 			name: 'required',
 			message: 'required'
 			});
-		var errorData={};  
+		  
 		v.check().then((matched) => {
-			
+			var data = {};
+			var errorData=[];
 			if (!matched) {
 				if(v.errors){
 					for(var attributeName in v.errors){
@@ -25,9 +23,9 @@ const sendMail = (async(req,res,next)=>{
 					}                            
 				}         
 				data = input; 
-				
+				res.send({code:200,success:false,data:errorData,message:'Your query not submitted'})
 			}else{
-				var hbs = require('nodemailer-express-handlebars');
+				//var hbs = require('nodemailer-express-handlebars');
 				let HelperOptions = {
 										from: '"'+input.name+'" <'+input.email+'>',
 										to: blogingEmail,
@@ -40,7 +38,7 @@ const sendMail = (async(req,res,next)=>{
 											message: input.message
 										}*/
 									};
-					smtpTransport.sendMail(HelperOptions, (error,info) => {
+					/*smtpTransport.sendMail(HelperOptions, (error,info) => {
 						if(error) {
 							console.log(error);
 							res.json(error);
@@ -48,13 +46,13 @@ const sendMail = (async(req,res,next)=>{
 						console.log("email is send");
 						console.log(info);
 						//res.json(info)
-						res.send({code:200,success:true,data:'Your query has been submitted,we will be in touch with you'})
-					});
+						res.send({code:200,success:true,message:"Your query has been submitted,we will be in touch with you",data:'Your query has been submitted,we will be in touch with you'})
+					});*/
+					res.send({code:200,success:true,message:"Your query has been submitted,we will be in touch with you",data:'Your query has been submitted,we will be in touch with you'})
 								
-
 			}
 		}); 
-		res.send({code:200,success:false,data:'Your query not submitted'})
+		res.send({code:200,success:false,data:'Your query not submitted',message:'Your query not submitted'})
     }catch(e){
        res.send({error:true,message:e.message}) 
     }

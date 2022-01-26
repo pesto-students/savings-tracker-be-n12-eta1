@@ -1,4 +1,5 @@
 import Fund from '../../models/fund.js'
+import Goal from '../../models/goal.js'
 
 const getAllFunds =  (async(req,res,next)=>{
     try{
@@ -24,8 +25,22 @@ const investFund = (async(req,res,next)=>{
         fund_data.user_id = req.user_id
         fund_data.fund_type = body.fund_type||null
         fund_data.amount = body.amount||null
-
+        
         const funds = await Fund.create(fund_data)
+        const goal = Goal.findOne({user_id:req.user_id,goal_id:goal_id})
+        if(goal){
+            const funds = await Fund.find({goal_id:goal_id})
+            if(funds){
+                var totalInvestments = funds.map(fund => fund.amount).reduce((acc, fund) => fund + acc);
+                if(totalInvestments<goal.total_amount){
+                    var status = {status:"Active"}
+                }else{
+                    var status = {status:"Achieved"}
+                }
+
+                Goal.findOneAndUpdate({user_id:req.user_id,goal_id:goal_id},status)
+            } 
+        }
         if(funds){
             res.send({code: 200, success: true, funds: funds, goal_id: goal_id})
         }
