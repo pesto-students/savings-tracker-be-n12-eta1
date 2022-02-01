@@ -5,7 +5,7 @@ const FundSchema = new mongoose.Schema(
         user_id: {
             type: String,
             required: [true, 'User Id field is required'],
-            unique: [true, 'User Id is already present']
+            unique: [false, '']
         },
         goal_id: {
             type: String,
