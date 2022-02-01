@@ -13,9 +13,9 @@ const GoalSchema = new Schema({
                                       required: [true, 'Title field is required']
                                   },
                                   description: {
-                                    type: String,
-                                    required: [true, 'Title field is required']
-                                },
+                                      type: String,
+                                      required: [true, 'Title field is required']
+                                  },
                                   status: {
                                       type: String,
                                       required: [false, 'Status field is required'],

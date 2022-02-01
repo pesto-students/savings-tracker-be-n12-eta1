@@ -8,6 +8,9 @@ import goalsRoutes from './routes/goalRoutes.js'
 import fundsRoutes from './routes/fundRoutes.js'
 import subscriptionRoutes from './routes/subscriptionRoutes.js'
 import notificationRoutes from './routes/notificationRoutes.js'
+
+import webhookRoutes from './routes/webhookRoutes.js'
+
 import nodemailer from "nodemailer"
 
 import cors from 'cors';
@@ -41,6 +44,9 @@ mongoose.Promise = global.Promise;
 
 app.use(express.static('public'));
 
+app.use('/webhooks', express.raw({type: '*/*'}), webhookRoutes);// putting here because processing requires raw body
+
+
 app.use(express.json());
 
 //PAYMENT STATUS
@@ -49,12 +55,12 @@ global.PAID = 2;
 global.TRIAL_EXPIRED = 3;
 global.LICENSEEXPIRED = 4;
 
-
+/*
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
-});
+});*/
 
 app.use('/api/goals', authMiddleware, goalsRoutes);
 app.use('/api/notifications', notificationRoutes);
@@ -62,6 +68,7 @@ app.use('/api/users/portfolio', authMiddleware, portfolioRoutes);
 app.use('/api/users', authMiddleware, userRoutes);
 app.use('/api/funds', authMiddleware, fundsRoutes);
 app.use('/api/subscription', authMiddleware, subscriptionRoutes);
+
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
