@@ -7,7 +7,6 @@ import {
     verifySignature,
     getSubscriptions,
     cancelSubscription,
-    invoices
 } from "../controllers/subscription/subscriptionController.js";
 
 
