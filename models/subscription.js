@@ -5,13 +5,25 @@ const SubscriptionSchema = new mongoose.Schema({
                                                        type: String,
                                                        required: [true],
                                                    },
-                                                   razorpay_subscription_id: {
-                                                       type: String,
+                                                   amount: {
+                                                       type: Number,
                                                        required: [true],
 
                                                    },
-                                                   razorpay_payment_id: {
+                                                   razorpay_subscription_id: {
                                                        type: String,
+                                                       required: [true],
+                                                   },
+                                                   payments: [{
+                                                       id: String,
+                                                       amount: Number,
+                                                       currency: String,
+                                                       invoice_id: String,
+                                                       order_id: String,
+                                                       created_at: Date
+                                                   }],
+                                                   paid_on: {
+                                                       type: Date,
                                                    },
                                                    cancelled_on: {
                                                        type: Date,
@@ -19,7 +31,7 @@ const SubscriptionSchema = new mongoose.Schema({
                                                    status: {
                                                        type: String,
                                                        required: [true],
-                                                       enum: ['created', 'active', 'cancelled']
+                                                       enum: ['created', 'active', 'cancelled', 'halted']
                                                    },
 
                                                }, {timestamps: true});

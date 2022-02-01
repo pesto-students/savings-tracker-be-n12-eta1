@@ -5,12 +5,13 @@ const router = express.Router();
 import {
     createSubscription,
     verifySignature,
-    getSubscription,
-    cancelSubscription
+    getSubscriptions,
+    cancelSubscription,
+    invoices
 } from "../controllers/subscription/subscriptionController.js";
 
 
-router.get('/', getSubscription);
+router.get('/', getSubscriptions);
 router.post('/', createSubscription);
 
 router.post('/verify', verifySignature);

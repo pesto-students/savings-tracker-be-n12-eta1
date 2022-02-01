@@ -32,8 +32,11 @@ const UserSchema = new mongoose.Schema({
                                                type: String,
                                                required: [true, 'A Valid currency is required']
                                            },
+                                           subscription_active: {
+                                               type: Boolean,
+                                               default: false
+                                           }
                                        });
-
 
 const User = mongoose.model('user', UserSchema);
 

@@ -25,7 +25,7 @@ const getGoals = (async (req, res) => {
             sort: {[orderBy]: sortBy}
         };
 
-        const query = {};
+        const query = {user_id};
 
         if (status !== 'All') {
             query.status = status
@@ -39,24 +39,10 @@ const getGoals = (async (req, res) => {
             query.start_date = {$gte: start_date, $lt: end_date}
         }
 
-        console.log(query)
-
-        const Goals = await Goal.paginate(query, options, function (err, result) {
+        const Goals = await Goal.paginate(query, options);
 
 
-            return result;
-        });
-
-        if (Goals) {
-
-            res.send({success: true, goals: Goals, message: 'Goal fetch successfully'});
-
-        }
-        else {
-            res.send({success: true, Goals: [], message: 'Goal fetch successfully'});
-
-        }
-
+        res.send({success: true, goals: Goals, message: 'Goal fetch successfully'});
     } catch (error) {
 
         const responseErrors = makeErrorsArray(error);

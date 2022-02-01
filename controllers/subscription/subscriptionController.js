@@ -6,14 +6,14 @@ import Subscription from "../../models/subscription.js";
 import User from "../../models/user.js";
 
 
-async function getSubscription(req, res, next) {
+async function getSubscriptions(req, res, next) {
 
     try {
         const user_id = req.user_id;
 
-        let transactions = await Subscription.find({user_id, status: {$ne: 'created'}}).sort({createdAt: 'desc'});
+        let subscriptions = await Subscription.find({user_id, status: {$ne: 'created'}}).sort({createdAt: 'desc'});
 
-        res.send({success: true, transactions});
+        res.send({success: true, subscriptions});
 
     }
     catch (e) {
@@ -44,13 +44,15 @@ async function createSubscription(req, res, next) {
                                                                                      plan_id: process.env.RAZORPAY_SUBSCRIPTION_PLAN_ID,
                                                                                      customer_notify: 1,
                                                                                      quantity: 1,
-                                                                                     total_count: 5,
+                                                                                     total_count: 10,
                                                                                  });
 
             subscription = new Subscription({
                                                 user_id,
                                                 razorpay_subscription_id: razorpayResponse.id,
-                                                status: 'created'
+                                                status: 'created',
+                                                currency: 'INR',
+                                                amount: 999
                                             });
             await subscription.save();
 
@@ -61,11 +63,7 @@ async function createSubscription(req, res, next) {
         res.send({
                      success: true,
                      razorpay_subscription_id: subscription.razorpay_subscription_id,
-                     user: {
-                         email: user.email,
-                         phone_number: user.phone_number,
-                         name: user.first_name + ' ' + user.last_name
-                     }
+                     user
                  });
     }
     catch (e) {
@@ -101,9 +99,14 @@ async function verifySignature(req, res, next) {
             const subscription = await Subscription.findOne({user_id, razorpay_subscription_id});
 
             subscription['razorpay_payment_id'] = razorpay_payment_id;
+            subscription.paid_on = new Date;
             subscription.status = 'active';
 
+            const user = await User.findOne({user_id});
+            user.subscription_active = true;
+
             await subscription.save();
+            await user.save();
 
             res.send({success: true});
         }
@@ -152,9 +155,13 @@ async function cancelSubscription(req, res) {
         subscription.status = 'cancelled';
         subscription.cancelled_on = new Date;
 
-        await subscription.save();
+        const user = User.findOne({user_id});
 
-        res.send({success: true});
+        user.subscription_active = false;
+        await subscription.save();
+        await user.save();
+
+        res.send({success: true, message: ''});
 
 
     }
@@ -166,5 +173,4 @@ async function cancelSubscription(req, res) {
 
 }
 
-
-export {createSubscription, verifySignature, getSubscription, cancelSubscription}
+export {createSubscription, verifySignature, getSubscriptions, cancelSubscription}
