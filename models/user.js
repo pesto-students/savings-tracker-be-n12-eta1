@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 
-
 const UserSchema = new mongoose.Schema({
                                            email: {
                                                type: String,
@@ -37,6 +36,7 @@ const UserSchema = new mongoose.Schema({
                                                default: false
                                            }
                                        });
+
 
 const User = mongoose.model('user', UserSchema);
 

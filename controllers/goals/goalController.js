@@ -1,7 +1,5 @@
 import Goal from "../../models/goal.js";
-import User from "../../models/user.js";
 import {makeErrorsArray} from "../../utils/errors.js";
-
 
 const getGoals = (async (req, res) => {
     try {
