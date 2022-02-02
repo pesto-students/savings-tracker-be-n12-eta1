@@ -41,10 +41,40 @@ const onboarding = (async (req, res) => {
             user.country = country;
             user.bio = bio;
             user.currency = currency;
-            user.monthly_expenses = monthly_expenses;
-            user.monthly_income = monthly_income;
-
             await user.save();
+
+            if (monthly_income && !isNaN(monthly_income)) {
+                const incomePortfolio = new Portfolio({
+                                                          user_id,
+                                                          type: 'Income',
+                                                          start_date: new Date,
+                                                          amount: monthly_income,
+                                                          frequency: 'Recurring',
+                                                          frequency_type: 'Month',
+                                                          frequency_unit: 1,
+                                                          description: 'Monthly Income',
+                                                          created_date: new Date
+                                                      });
+
+                await incomePortfolio.save();
+            }
+
+            if (monthly_expenses && !isNaN(monthly_expenses)) {
+                const expensesPortfolio = new Portfolio({
+                                                            user_id,
+                                                            type: 'Expenses',
+                                                            start_date: new Date,
+                                                            amount: monthly_expenses,
+                                                            frequency: 'Recurring',
+                                                            frequency_type: 'Month',
+                                                            frequency_unit: 1,
+                                                            description: 'Monthly Expenses',
+                                                            created_date: new Date
+                                                        });
+
+                await expensesPortfolio.save();
+            }
+
 
             res.send({success: true});
 
