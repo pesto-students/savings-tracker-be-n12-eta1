@@ -1,10 +1,10 @@
 import Goal from "../../models/goal.js";
 import {makeErrorsArray} from "../../utils/errors.js";
+import User from "../../models/user.js"
 
 const getGoals = (async (req, res) => {
     try {
         const user_id = req.user_id;
-
         const params = req.query;
         const searchData = JSON.parse(params.searchData);
         // get pagination data
@@ -46,7 +46,7 @@ const getGoals = (async (req, res) => {
         const responseErrors = makeErrorsArray(error);
         res.statusCode = 400;
 
-        res.send({success: false, errors: responseErrors});
+        res.send({success: false, errors: responseErrors,message:error.message});
 
     }
 });
@@ -56,10 +56,22 @@ const getGoalDetails = (async(req,res,next)=>{
         const user_id = req.user_id;
         const goal_id = req.params.GoalId
         const goal = await Goal.findOne({user_id, _id: goal_id});
+        if(goal){
+            var newData = {
+                _id:goal._id,
+                user_id:user_id,
+                title:goal.title,
+                description:goal.description,
+                status:goal.status,
+                total_amount:goal.total_amount
+            }
+            newData.start_date = goal.start_date.toLocaleDateString()
+            newData.end_date = goal.end_date.toLocaleDateString()
 
-        res.send({success: true, goal:goal, message: 'Goal added successfully'});
-
-
+            res.send({success: true, goal:newData, message: 'Goal found successfully'});
+        }
+        res.send({success: true, goal:goal, message: 'Goal not found'});
+    
     } catch (error) {
 
         const responseErrors = makeErrorsArray(error);
