@@ -1,9 +1,10 @@
 import Fund from '../../models/fund.js'
+import Goal from '../../models/goal.js'
 
 const getAllFunds =  (async(req,res,next)=>{
     try{
-        var goal_id = req.query.goal_id
-        const funds = await Fund.find({goal_id:goal_id})
+        var goal_id = req.params.goal_id
+        const funds = await Fund.find({goal_id})
         if(funds){
             res.send({code: 200, success: true, funds: funds, goal_id: goal_id})
         }
@@ -17,15 +18,29 @@ const getAllFunds =  (async(req,res,next)=>{
 
 const investFund = (async(req,res,next)=>{
     try{
-        var goal_id = req.query.goal_id
+        var goal_id = req.params.goal_id
         var fund_data = {}
         var body = req.body
         fund_data.goal_id = goal_id
         fund_data.user_id = req.user_id
         fund_data.fund_type = body.fund_type||null
-        fund_data.amount = body.amount||null
-
+        fund_data.amount = Number(body.amount)||null
+        console.log(fund_data)
         const funds = await Fund.create(fund_data)
+        const goal = Goal.findOne({user_id:req.user_id,goal_id:goal_id})
+        if(goal){
+            const funds = await Fund.find({goal_id:goal_id})
+            if(funds){
+                var totalInvestments = funds.map(fund => fund.amount).reduce((acc, fund) => fund + acc);
+                if(totalInvestments<goal.total_amount){
+                    var status = {status:"Active"}
+                }else{
+                    var status = {status:"Achieved"}
+                }
+
+                Goal.findOneAndUpdate({user_id:req.user_id,goal_id:goal_id},status)
+            } 
+        }
         if(funds){
             res.send({code: 200, success: true, funds: funds, goal_id: goal_id})
         }
@@ -41,10 +56,10 @@ const updateFund = (async(req,res,next)=>{
     try{
         var fund_data = {}
         var body = req.body
-        fund_data.goal_id = req.query.goal_id
+        fund_data.goal_id = req.params.goal_id
         fund_data.user_id = req.user_id
         fund_data.fund_type = body.fund_type||null
-        fund_data.amount = body.amount||null
+        fund_data.amount = Number(body.amount)||null
 
         const fund = await Fund.findOneAndUpdate({fund_id:req.query.fund_id},fund_data)
         if(fund){
@@ -60,7 +75,7 @@ const updateFund = (async(req,res,next)=>{
 
 const deleteFund = (async(req,res,next)=>{
     try{
-        var fund_id = req.query.fund_id
+        var fund_id = req.params.fund_id
 
         const fund = await Fund.findOneAndDelete({fund_id:req.query.fund_id})
         if(fund){

@@ -13,11 +13,9 @@ const getStatus = (async (req, res, next) => {
             res.send({code: 200, success: true, user: user, returning_user: true});
         } else {
             user = await User.create({user_id: user_id, phone_number: phone_number});
-
             res.send({code: 200, success: true, returning_user: false});
         }
     } catch (e) {
-
         res.send({success: false, message: e.message})
     }
 });
@@ -148,21 +146,29 @@ const getDashboardData = (async (req, res, next) => {
     try {
         const user_id = req.user_id
         var dashboard = {}
-        const goals = await Goals.aggregate([
-                                                {
-                                                    $group:
-                                                        {
-                                                            _id: "$status",
-                                                            count: {$sum: 1}
-                                                        },
+        var goals = [
+            {_id:"active",count:0},
+            {_id:"recent",count:0},
+            {_id:"achieved",count:0}
+        ]
+        const status_goals = await Goals.aggregate([
+            {
+                $match: { user_id: {$in:[user_id]} }
+            },
+            {
+                $group:
+                {
+                    _id: "$status" ,
+                    count:{$sum:1}
+                },  
+                
+                  
+            }
+        ])
+        goals = Object.assign(goals,status_goals)
 
-
-                                                }/*,{
-                $match: { "user_id": user_id }
-            }*/
-                                            ])//.match({ user_id: user_id })
-        //const goals = await Goals.find({user_id:user_id})
-        var end_data = new Date()
+        const user = await User.findOne({user_id}, ['currency']);
+        var end_data=  new Date()
         var d = new Date()
         var start_date = d.setMonth(d.getMonth() - 1);
         const portfolio = await Portfolio.findOne({user_id: user_id, frequency: 'One Time'})
@@ -194,8 +200,8 @@ const getDashboardData = (async (req, res, next) => {
         }
         dashboard.chart_data = [income_graph, expense_graph]
         dashboard.goals = goals
-        dashboard.salary = (portfolio) ? portfolio.amount : 0;
-        res.send({code: 200, success: true, dashboard: dashboard});
+        dashboard.salary = (portfolio)?portfolio.amount:0;
+        res.send({code: 200, success: true, dashboard: dashboard,currency:user.currency});
 
     } catch (e) {
         res.send({success: false, message: e.message})

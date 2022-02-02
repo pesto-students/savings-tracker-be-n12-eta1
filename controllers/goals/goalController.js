@@ -38,9 +38,9 @@ const getGoals = (async (req, res) => {
         }
 
         const Goals = await Goal.paginate(query, options);
+        const user = await User.findOne({user_id}, ['currency']);
 
-
-        res.send({success: true, goals: Goals, message: 'Goal fetch successfully'});
+        res.send({success: true, goals: Goals,currency: user.currency, message: 'Goal fetch successfully'});
     } catch (error) {
 
         const responseErrors = makeErrorsArray(error);
@@ -50,17 +50,38 @@ const getGoals = (async (req, res) => {
 
     }
 });
+
+const getGoalDetails = (async(req,res,next)=>{
+    try {
+        const user_id = req.user_id;
+        const goal_id = req.params.GoalId
+        const goal = await Goal.findOne({user_id, _id: goal_id});
+
+        res.send({success: true, goal:goal, message: 'Goal added successfully'});
+
+
+    } catch (error) {
+
+        const responseErrors = makeErrorsArray(error);
+        res.statusCode = 400;
+
+        res.send({success: false, errors: responseErrors});
+
+    }
+})
+
 const addGoal = (async (req, res) => {
     try {
         const user_id = req.user_id;
         const {title, description, total_amount, end_date} = req.body;
-
+        const status = "Recent"
         const goal = new Goal({
                                   user_id,
                                   title,
                                   description,
                                   total_amount,
-                                  end_date
+                                  end_date,
+                                  status
                               });
 
         await goal.save();
@@ -144,6 +165,7 @@ const deleteGoal = (async (req, res) => {
 export default {
 
     getGoals,
+    getGoalDetails,
     addGoal,
     updateGoal,
     deleteGoal
