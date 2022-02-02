@@ -56,20 +56,6 @@ const getGoalDetails = (async(req,res,next)=>{
         const user_id = req.user_id;
         const goal_id = req.params.GoalId
         const goal = await Goal.findOne({user_id, _id: goal_id});
-        if(goal){
-            var newData = {
-                _id:goal._id,
-                user_id:user_id,
-                title:goal.title,
-                description:goal.description,
-                status:goal.status,
-                total_amount:goal.total_amount
-            }
-            newData.start_date = goal.start_date.toLocaleDateString()
-            newData.end_date = goal.end_date.toLocaleDateString()
-
-            res.send({success: true, goal:newData, message: 'Goal found successfully'});
-        }
         res.send({success: true, goal:goal, message: 'Goal not found'});
     
     } catch (error) {

@@ -18,6 +18,7 @@ const getAllFunds =  (async(req,res,next)=>{
 
 const investFund = (async(req,res,next)=>{
     try{
+        
         var goal_id = req.params.goal_id
         var fund_data = {}
         var body = req.body
@@ -25,9 +26,8 @@ const investFund = (async(req,res,next)=>{
         fund_data.user_id = req.user_id
         fund_data.fund_type = body.fund_type||null
         fund_data.amount = Number(body.amount)||null
-        console.log(fund_data)
         const funds = await Fund.create(fund_data)
-        const goal = Goal.findOne({user_id:req.user_id,goal_id:goal_id})
+        const goal = await Goal.findOne({user_id:req.user_id,goal_id:goal_id})
         if(goal){
             const funds = await Fund.find({goal_id:goal_id})
             if(funds){
@@ -38,7 +38,7 @@ const investFund = (async(req,res,next)=>{
                     var status = {status:"Achieved"}
                 }
 
-                Goal.findOneAndUpdate({user_id:req.user_id,goal_id:goal_id},status)
+                await Goal.findOneAndUpdate({user_id:req.user_id,goal_id:goal_id},status)
             } 
         }
         if(funds){
@@ -56,12 +56,12 @@ const updateFund = (async(req,res,next)=>{
     try{
         var fund_data = {}
         var body = req.body
-        fund_data.goal_id = req.params.goal_id
+        //fund_data.goal_id = req.params.goal_id
         fund_data.user_id = req.user_id
         fund_data.fund_type = body.fund_type||null
         fund_data.amount = Number(body.amount)||null
 
-        const fund = await Fund.findOneAndUpdate({fund_id:req.query.fund_id},fund_data)
+        const fund = await Fund.findOneAndUpdate({_id:req.params.fund_id},fund_data)
         if(fund){
             res.send({code: 200, success: true, fund: fund, fund_id: fund_id})
         }
@@ -77,7 +77,7 @@ const deleteFund = (async(req,res,next)=>{
     try{
         var fund_id = req.params.fund_id
 
-        const fund = await Fund.findOneAndDelete({fund_id:req.query.fund_id})
+        const fund = await Fund.findOneAndDelete({_id:fund_id})
         if(fund){
             res.send({code: 200, success: true, fund: fund, fund_id: fund_id})
         }
