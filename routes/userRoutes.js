@@ -7,6 +7,6 @@ router.get('/onboarding', userController.getStatus);
 router.post('/onboarding', userController.onboarding);
 router.get('/profile', userController.getProfile);
 router.post('/profile', userController.saveProfile);
-router.get('/dashboard',userController.getDashboardData);
+router.post('/dashboard',userController.getDashboardData);
 
 export default router
