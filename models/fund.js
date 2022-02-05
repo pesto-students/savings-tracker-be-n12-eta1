@@ -10,7 +10,7 @@ const FundSchema = new mongoose.Schema(
             type: String,
             required: [true, 'Goal Id field is required']
         },
-        fund_type: {
+        description: {
             type: String,
             required: [false, '']
         },
