@@ -115,6 +115,7 @@ const saveProfile = (async (req, res, next) => {
 const getDashboardData = (async (req, res, next) => {
     try {
         const user_id = req.user_id
+        var body = req.body || {}
         var dashboard = {}
         var goals = [
             {_id:"active",count:0},
@@ -138,9 +139,27 @@ const getDashboardData = (async (req, res, next) => {
         goals = Object.assign(goals,status_goals)
 
         const user = await User.findOne({user_id}, ['currency']);
-        var end_data=  new Date()
-        var d = new Date()
-        var start_date = d.setMonth(d.getMonth() - 1);
+        if(typeof body.start_date!=='undefined'){
+            var start_date = body.start_date;
+        }else{
+            var d = new Date()
+            var start_date = d.setMonth(d.getMonth() - 12);
+        }
+
+        if(typeof body.end_date!=='undefined'){
+            var end_date = body.end_date;
+        }else{
+            var end_date=  new Date()
+            end_date = end_date.setMonth(end_date.getMonth())
+        }
+        
+        
+        
+        dashboard.start_date = start_date
+        dashboard.end_date = end_date
+        // dashboard.start_date = new Date(start_date)
+        // dashboard.end_date = new Date(end_date)
+        
         const portfolio = await Portfolio.findOne({user_id: user_id, frequency: 'One Time'})
         const incomes = await Portfolio.find({
                                                  user_id: user_id,
