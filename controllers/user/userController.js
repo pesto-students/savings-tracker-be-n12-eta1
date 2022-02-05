@@ -185,7 +185,13 @@ const getDashboardData = (async (req, res, next) => {
         dashboard.start_date = start_date
         dashboard.end_date = end_date
         
-        const portfolio = await Portfolio.findOne({user_id: user_id, frequency: 'One Time'})
+        const portfolios = await Portfolio.find({
+            user_id: user_id,
+            type: 'Income',
+            //frequency: {$ne: 'One Time'},
+            start_date: {$gte: start_date}
+        })
+        var salary = portfolios.map(portfolio => portfolio.amount).reduce((acc, portfolio) => portfolio + acc);
         const incomes = await Portfolio.find({
                                                  user_id: user_id,
                                                  type: 'Income',
@@ -225,7 +231,7 @@ const getDashboardData = (async (req, res, next) => {
         }
         dashboard.chart_data = [income_graph, expense_graph]
         dashboard.goals = goals
-        dashboard.salary = (portfolio)?portfolio.amount:0;
+        dashboard.salary = (salary)?salary:0;
         res.send({code: 200, success: true, dashboard: dashboard,currency:user.currency});
 
     } catch (e) {
