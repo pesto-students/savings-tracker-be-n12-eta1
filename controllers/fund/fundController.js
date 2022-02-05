@@ -18,12 +18,13 @@ const getAllFunds =  (async(req,res,next)=>{
 
 const investFund = (async(req,res,next)=>{
     try{
-        
+        /*const deleteFunds = await Fund.deleteMany({})
+        console.log(deleteFunds)*/
         var goal_id = req.params.goal_id
         var fund_data = {}
         var body = req.body
         fund_data.goal_id = goal_id
-        fund_data.user_id = req.user_id
+        fund_data.user_id = Math.random()//req.user_id
         fund_data.fund_type = body.fund_type||null
         fund_data.amount = Number(body.amount)||null
         const funds = await Fund.create(fund_data)

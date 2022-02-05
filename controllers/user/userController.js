@@ -118,9 +118,9 @@ const getDashboardData = (async (req, res, next) => {
         var body = req.body || {}
         var dashboard = {}
         var goals = [
-            {_id:"active",count:0},
-            {_id:"recent",count:0},
-            {_id:"achieved",count:0}
+            {_id:"Recent",count:0},
+            {_id:"Active",count:0},
+            {_id:"Achieved",count:0}
         ]
         const status_goals = await Goals.aggregate([
             {
@@ -137,7 +137,6 @@ const getDashboardData = (async (req, res, next) => {
             }
         ])
         goals = Object.assign(goals,status_goals)
-
         const user = await User.findOne({user_id}, ['currency']);
         if(typeof body.start_date!=='undefined'){
             var start_date = body.start_date;
@@ -153,12 +152,8 @@ const getDashboardData = (async (req, res, next) => {
             end_date = end_date.setMonth(end_date.getMonth())
         }
         
-        
-        
         dashboard.start_date = start_date
         dashboard.end_date = end_date
-        // dashboard.start_date = new Date(start_date)
-        // dashboard.end_date = new Date(end_date)
         
         const portfolio = await Portfolio.findOne({user_id: user_id, frequency: 'One Time'})
         const incomes = await Portfolio.find({
@@ -175,19 +170,30 @@ const getDashboardData = (async (req, res, next) => {
                                               })
         var income_graph = []
         var expense_graph = []
+        var graphDate = []
         income_graph[0] = 'Incomes'
         expense_graph[0] = 'Expenses'
+        graphDate[0] = 'Dates'
+        var date;
 
         for (var i = 0; i < incomes.length; i++) {
-            if (typeof incomes[i] !== 'undefined')
-                income_graph[i + 1] = (incomes[i].start_date.toLocaleDateString(), incomes[i].amount);
+            if (typeof incomes[i] !== 'undefined'){
+                date = incomes[i].start_date.toLocaleDateString()
+                income_graph[i + 1] = (date, incomes[i].amount);
+                graphDate[i+1] = date
+            }
+                
         }
 
         for (var e = 0; e < expenses.length; e++) {
-            if (typeof expenses[e] !== 'undefined')
-                expense_graph[e + 1] = (expenses[e].start_date.toLocaleDateString(), expenses[e].amount);
+            if (typeof expenses[e] !== 'undefined'){
+                date = expenses[e].start_date.toLocaleDateString()
+                expense_graph[e + 1] = (date, expenses[e].amount);
+                graphDate[e+1] = date
+            }
+                
         }
-        dashboard.chart_data = [income_graph, expense_graph]
+        dashboard.chart_data = [income_graph, expense_graph,graphDate]
         dashboard.goals = goals
         dashboard.salary = (portfolio)?portfolio.amount:0;
         res.send({code: 200, success: true, dashboard: dashboard,currency:user.currency});

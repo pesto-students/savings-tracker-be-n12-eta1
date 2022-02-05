@@ -4,7 +4,7 @@ import User from "../../models/user.js"
 
 const getGoals = (async (req, res) => {
     try {
-        let currency;
+        //let currency;
         
         const user_id = req.user_id;
         const params = req.query;
@@ -42,9 +42,9 @@ const getGoals = (async (req, res) => {
         const Goals = await Goal.paginate(query, options);
         const user = await User.findOne({user_id}, ['currency']);
 
-        if(currency){
+        //if(currency){
             const currency = user.currency;
-        }
+        //}
         res.send({success: true, goals: Goals,currency: currency, message: 'Goal fetch successfully'});
     } catch (error) {
 
