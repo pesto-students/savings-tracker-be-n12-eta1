@@ -193,7 +193,7 @@ const getDashboardData = (async (req, res, next) => {
             }
                 
         }
-        dashboard.chart_data = [income_graph, expense_graph,graphDate]
+        dashboard.chart_data = [income_graph, expense_graph]
         dashboard.goals = goals
         dashboard.salary = (portfolio)?portfolio.amount:0;
         res.send({code: 200, success: true, dashboard: dashboard,currency:user.currency});
