@@ -1,11 +1,39 @@
 import Goal from "../../models/goal.js";
 import {makeErrorsArray} from "../../utils/errors.js";
 import User from "../../models/user.js"
+import Fund from "../../models/fund.js";
+
+async function populateFundsToGoals(user_id, docs) {
+
+    let goalIds = docs.map(goal => goal._id);
+
+    let funds = await Fund.find({user_id, goal_id: {$in: goalIds}});
+
+    const goalsFundsMap = {};
+
+    for (let i = 0; i < funds.length; i++) {
+        const fund = funds[i];
+
+        if (!goalsFundsMap[fund.goal_id]) {
+            goalsFundsMap[fund.goal_id] = 0;
+        }
+        goalsFundsMap[fund.goal_id] += fund.amount;
+
+    }
+
+    docs.forEach(doc => {
+        doc.saved_amount = goalsFundsMap[doc._id.toString()] || 0;
+
+    });
+
+
+    return docs;
+
+}
 
 const getGoals = (async (req, res) => {
     try {
-        //let currency;
-        
+
         const user_id = req.user_id;
         const params = req.query;
         const searchData = JSON.parse(params.searchData);
@@ -20,6 +48,7 @@ const getGoals = (async (req, res) => {
         let end_date = searchData.end_date || '';
 
         const options = {
+            lean: true,
             page: page,
             limit: limit,
             sort: {[orderBy]: sortBy}
@@ -39,30 +68,37 @@ const getGoals = (async (req, res) => {
             query.start_date = {$gte: start_date, $lt: end_date}
         }
 
-        const Goals = await Goal.paginate(query, options);
+        const goals = await Goal.paginate(query, options);
         const user = await User.findOne({user_id}, ['currency']);
 
-        //if(currency){
-            const currency = user.currency;
-        //}
-        res.send({success: true, goals: Goals,currency: currency, message: 'Goal fetch successfully'});
+        if (goals.docs.length > 0) {
+            goals.docs = await populateFundsToGoals(user_id, goals.docs);
+
+        }
+
+
+        const currency = user.currency;
+
+        res.send({success: true, goals: goals, currency: currency, message: 'Goal fetch successfully'});
+
+
     } catch (error) {
 
         const responseErrors = makeErrorsArray(error);
         res.statusCode = 400;
 
-        res.send({success: false, errors: responseErrors,message:error.message});
+        res.send({success: false, errors: responseErrors, message: error.message});
 
     }
 });
 
-const getGoalDetails = (async(req,res,next)=>{
+const getGoalDetails = (async (req, res, next) => {
     try {
         const user_id = req.user_id;
         const goal_id = req.params.GoalId
         const goal = await Goal.findOne({user_id, _id: goal_id});
-        res.send({success: true, goal:goal, message: 'Goal not found'});
-    
+        res.send({success: true, goal: goal, message: 'Goal not found'});
+
     } catch (error) {
 
         const responseErrors = makeErrorsArray(error);
