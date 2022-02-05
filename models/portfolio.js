@@ -47,6 +47,7 @@ const PortfolioSchema = new mongoose.Schema({
                                                 },
                                                 end_date: {
                                                     type: Date,
+                                                    defaultValue: null,
                                                     required: [false],
 
                                                 },
