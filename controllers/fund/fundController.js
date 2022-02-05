@@ -28,18 +28,19 @@ const investFund = (async (req, res, next) => {
         fund_data.description = body.description || null;
         fund_data.amount = Number(body.amount) || null;
         const funds = await Fund.create(fund_data);
-        const goal = await Goal.findOne({user_id: req.user_id, goal_id: goal_id});
+        const goal = await Goal.findOne({user_id: req.user_id, _id: goal_id});
+        
         if (goal) {
             const funds = await Fund.find({goal_id: goal_id});
             if (funds) {
                 var totalInvestments = funds.map(fund => fund.amount).reduce((acc, fund) => fund + acc);
                 if (totalInvestments < goal.total_amount) {
-                    var status = {status: "Active"}
+                    goal.status= "Active"
                 } else {
-                    var status = {status: "Achieved"}
+                    goal.status =  "Achieved"
                 }
-
-                await Goal.findOneAndUpdate({user_id: req.user_id, goal_id: goal_id}, status)
+                //var update = await Goal.findOneAndUpdate({user_id: req.user_id, _id: goal_id}, status)
+                var update = await goal.save()
             }
         }
         if (funds) {

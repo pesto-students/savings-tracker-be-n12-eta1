@@ -25,8 +25,6 @@ async function populateFundsToGoals(user_id, docs) {
         doc.saved_amount = goalsFundsMap[doc._id.toString()] || 0;
 
     });
-
-
     return docs;
 
 }
@@ -73,14 +71,10 @@ const getGoals = (async (req, res) => {
 
         if (goals.docs.length > 0) {
             goals.docs = await populateFundsToGoals(user_id, goals.docs);
-
         }
 
-
         const currency = user.currency;
-
         res.send({success: true, goals: goals, currency: currency, message: 'Goal fetch successfully'});
-
 
     } catch (error) {
 
@@ -97,7 +91,8 @@ const getGoalDetails = (async (req, res, next) => {
         const user_id = req.user_id;
         const goal_id = req.params.GoalId
         const goal = await Goal.findOne({user_id, _id: goal_id});
-        res.send({success: true, goal: goal, message: 'Goal not found'});
+        const user = await User.findOne({user_id}, ['currency']);
+        res.send({success: true, goal: goal,currency:user.currency, message: 'Goal found'});
 
     } catch (error) {
 
