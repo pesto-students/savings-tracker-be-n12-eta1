@@ -3,7 +3,7 @@ import {makeErrorsArray} from "../../utils/errors.js";
 import User from "../../models/user.js"
 import Fund from "../../models/fund.js";
 
-async function populateFundsToGoals(user_id, docs) {
+async function populateFundsToGoals_(user_id, docs) {
 
     let goalIds = docs.map(goal => goal._id);
 
@@ -23,10 +23,8 @@ async function populateFundsToGoals(user_id, docs) {
 
     docs.forEach(doc => {
         doc.saved_amount = goalsFundsMap[doc._id.toString()] || 0;
-
     });
     return docs;
-
 }
 
 const getGoals = (async (req, res) => {
@@ -71,6 +69,7 @@ const getGoals = (async (req, res) => {
 
         if (goals.docs.length > 0) {
             goals.docs = await populateFundsToGoals(user_id, goals.docs);
+
         }
 
         const currency = user.currency;

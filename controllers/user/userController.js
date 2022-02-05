@@ -7,6 +7,7 @@ const getStatus = (async (req, res, next) => {
     try {
 
         const user_id = req.user_id;
+
         const phone_number = req.phone_number;
         let user = await User.findOne({user_id: user_id});
         if (user) {
@@ -28,9 +29,15 @@ const onboarding = (async (req, res) => {
 
         const user = await User.findOne({user_id: user_id});
 
-        //todo check if already done
-
         if (user) {
+
+
+            if (!currency || currency === '') {
+                res.send({success: false, message: 'A Valid Currency is required.'});
+                return;
+
+            }
+
             user.first_name = first_name;
             user.last_name = last_name;
             user.email = email;
@@ -148,40 +155,40 @@ const getDashboardData = (async (req, res, next) => {
         var body = req.body || {}
         var dashboard = {}
         var goals = [
-            {_id:"Recent",count:0},
-            {_id:"Active",count:0},
-            {_id:"Achieved",count:0}
+            {_id: "Recent", count: 0},
+            {_id: "Active", count: 0},
+            {_id: "Achieved", count: 0}
         ]
         const status_goals = await Goals.aggregate([
-            {
-                $match: { user_id: {$in:[user_id]} }
-            },
-            {
-                $group:
-                {
-                    _id: "$status" ,
-                    count:{$sum:1}
-                },  
-                
-                  
-            }
-        ])
-        goals = Object.assign(goals,status_goals)
+                                                       {
+                                                           $match: {user_id: {$in: [user_id]}}
+                                                       },
+                                                       {
+                                                           $group:
+                                                               {
+                                                                   _id: "$status",
+                                                                   count: {$sum: 1}
+                                                               },
+
+
+                                                       }
+                                                   ])
+        goals = Object.assign(goals, status_goals)
         const user = await User.findOne({user_id}, ['currency']);
-        if(typeof body.start_date!=='undefined'){
+        if (typeof body.start_date !== 'undefined') {
             var start_date = body.start_date;
-        }else{
+        } else {
             var d = new Date()
             var start_date = d.setMonth(d.getMonth() - 1);
         }
 
-        if(typeof body.end_date!=='undefined'){
+        if (typeof body.end_date !== 'undefined') {
             var end_date = body.end_date;
-        }else{
-            var end_date=  new Date()
+        } else {
+            var end_date = new Date()
             end_date = end_date.setMonth(end_date.getMonth())
         }
-        
+
         dashboard.start_date = start_date
         dashboard.end_date = end_date
         
@@ -192,6 +199,7 @@ const getDashboardData = (async (req, res, next) => {
             start_date: {$gte: start_date}
         })
         var salary = portfolios.map(portfolio => portfolio.amount).reduce((acc, portfolio) => portfolio + acc);
+
         const incomes = await Portfolio.find({
                                                  user_id: user_id,
                                                  type: 'Income',
@@ -213,26 +221,29 @@ const getDashboardData = (async (req, res, next) => {
         var date;
 
         for (var i = 0; i < incomes.length; i++) {
-            if (typeof incomes[i] !== 'undefined'){
+            if (typeof incomes[i] !== 'undefined') {
                 date = incomes[i].start_date.toLocaleDateString()
                 income_graph[i + 1] = (date, incomes[i].amount);
-                graphDate[i+1] = date
+                graphDate[i + 1] = date
             }
-                
+
         }
 
         for (var e = 0; e < expenses.length; e++) {
-            if (typeof expenses[e] !== 'undefined'){
+            if (typeof expenses[e] !== 'undefined') {
                 date = expenses[e].start_date.toLocaleDateString()
                 expense_graph[e + 1] = (date, expenses[e].amount);
-                graphDate[e+1] = date
+                graphDate[e + 1] = date
             }
-                
+
         }
+
         dashboard.chart_data = [income_graph, expense_graph]
+
         dashboard.goals = goals
         dashboard.salary = (salary)?salary:0;
         res.send({code: 200, success: true, dashboard: dashboard,currency:user.currency});
+
 
     } catch (e) {
         res.send({success: false, message: e.message})

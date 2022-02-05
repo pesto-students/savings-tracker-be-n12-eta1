@@ -1,9 +1,22 @@
 import mongoose from 'mongoose'
 
 const UserSchema = new mongoose.Schema({
+                                           user_id: {
+                                               type: String,
+                                               required: [false, 'User ID is optional']
+                                           },
+
                                            email: {
                                                type: String,
-                                               required: [false, 'Email field is optional']
+                                               required: [true, 'Email field is required']
+                                           },
+                                           first_name: {
+                                               type: String,
+                                               required: [true, 'First Name is required']
+                                           },
+                                           last_name: {
+                                               type: String,
+                                               required: [true, 'Last Name is required']
                                            },
                                            phone_number: {
                                                type: String,
@@ -29,7 +42,7 @@ const UserSchema = new mongoose.Schema({
                                            },
                                            currency: {
                                                type: String,
-                                               required: [true, 'A Valid currency is required']
+                                               required: [false, 'A Valid currency is required']
                                            },
                                            subscription_active: {
                                                type: Boolean,
