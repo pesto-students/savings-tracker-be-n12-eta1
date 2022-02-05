@@ -204,13 +204,15 @@ const getDashboardData = (async (req, res, next) => {
                                                  user_id: user_id,
                                                  type: 'Income',
                                                  //frequency: {$ne: 'One Time'},
-                                                 start_date: {$gte: start_date}
+                                                 start_date: {$gte: start_date},
+                                                 start_date: {$lte: end_date}
                                              })
         const expenses = await Portfolio.find({
                                                   user_id: user_id,
                                                   type: 'Expenses',
                                                   //frequency: {$ne: 'One Time'},
-                                                  start_date: {$gte: start_date}
+                                                  start_date: {$gte: start_date},
+                                                  start_date: {$lte: end_date}
                                               })
         var income_graph = []
         var expense_graph = []
