@@ -179,7 +179,7 @@ const getDashboardData = (async (req, res, next) => {
             var start_date = body.start_date;
         } else {
             var d = new Date()
-            var start_date = d.setMonth(d.getMonth() - 12);
+            var start_date = d.setMonth(d.getMonth() - 1);
         }
 
         if (typeof body.end_date !== 'undefined') {
@@ -196,13 +196,13 @@ const getDashboardData = (async (req, res, next) => {
         const incomes = await Portfolio.find({
                                                  user_id: user_id,
                                                  type: 'Income',
-                                                 frequency: {$ne: 'One Time'},
+                                                 //frequency: {$ne: 'One Time'},
                                                  start_date: {$gte: start_date}
                                              })
         const expenses = await Portfolio.find({
                                                   user_id: user_id,
                                                   type: 'Expenses',
-                                                  frequency: {$ne: 'One Time'},
+                                                  //frequency: {$ne: 'One Time'},
                                                   start_date: {$gte: start_date}
                                               })
         var income_graph = []
@@ -230,7 +230,9 @@ const getDashboardData = (async (req, res, next) => {
             }
 
         }
-        dashboard.chart_data = [income_graph, expense_graph, graphDate]
+
+        dashboard.chart_data = [income_graph, expense_graph]
+
         dashboard.goals = goals
         dashboard.salary = (portfolio) ? portfolio.amount : 0;
         res.send({code: 200, success: true, dashboard: dashboard, currency: user.currency});
