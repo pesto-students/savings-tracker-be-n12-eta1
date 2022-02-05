@@ -5,9 +5,18 @@ const UserSchema = new mongoose.Schema({
                                                type: String,
                                                required: [false, 'User ID is optional']
                                            },
+
                                            email: {
                                                type: String,
-                                               required: [false, 'Email field is optional']
+                                               required: [true, 'Email field is required']
+                                           },
+                                           first_name: {
+                                               type: String,
+                                               required: [true, 'First Name is required']
+                                           },
+                                           last_name: {
+                                               type: String,
+                                               required: [true, 'Last Name is required']
                                            },
                                            phone_number: {
                                                type: String,
