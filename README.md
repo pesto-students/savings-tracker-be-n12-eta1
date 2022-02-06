@@ -3,8 +3,7 @@
 Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.
                                         <h1><a href="https://savings-tracker-111.netlify.app">Live URL</a></h1>
 Table of Contents
-
-  <ul>
+<ul>
     <li>
         <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#about-the-project">About The Project</a>
     </li>
@@ -27,17 +26,43 @@ Table of Contents
     <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#contributors"> Contributors</a>
     </li>
 </ul>
+  
+
 <div id="about-the-project">
   <h2>About The Project<h2>
 </div>
 
-<p>Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.</p>
+<p>
+Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.
+</p>
+<ul>
+    <li>
+        <a href="https://docs.google.com/document/d/1CUNwwH057L5qHEiwzAqaLjkEhxY9jk3l5CUgVNI0ogg/edit#heading=h.pvpvwtaj4bmt">
+            PRD
+        </a>
+    </li>
+    <li>
+        <a href="https://drive.google.com/file/d/1xkCJqBz0HjVAuAmiUFomkpqYPJ9FpBvT/view?usp=sharing">
+            HLD
+        </a>
+    </li>
+    <li>
+        <a href="https://drive.google.com/file/d/1S2SYg-KsHpn8S3nchyWbR_9Gj7W0Ptn9/view?usp=sharing">
+            One Pager
+        </a>
+    </li>
+    <li>
+        <a href="https://www.figma.com/proto/9QYFjHDxCVZGkmAPw13bkv/Savings-Tracker-n12-eta-1?node-id=2%3A3&scaling=contain&page-id=0%3A1&starting-point-node-id=2%3A3&show-proto-sidebar=1">
+            Wireframes
+        </a>
+    </li>
+    <li>
+        <a href="https://github.com/pesto-students/savings-tracker-fe-n12-eta1">
+            Frontend Repo
+        </a>
+    </li>
+</ul>
 
-PRD      HLD      One Pager      Wireframes      Coding Practices
-Frontend Repo
-
-Frontend Repo
-Schema Design
 Primary DB : MongoDB
 Social Feeds : Firebase Realtime Database
 Built With
@@ -45,7 +70,7 @@ Built With
 [Node JS] [Express JS] [MongoDB]      [Redis] [Firebase] [Razorpay Payment Gateway] [Heroku]
 Performance, Security, Caching, etc
 
-Please read our coding practices doc for complete details on these.
+Please read our coding practices doc here,for complete details on these.
 Getting Started
 Prerequisites
 
@@ -54,7 +79,7 @@ Prerequisites
 
 1. Clone the project from github
 
-git clone https://github.com/pesto-students/n6-emarat-be-eta-6.git emarat-be
+git clone https://github.com/pesto-students/savings-tracker-be-n12-eta1
 2. Navigate to folder
 
 cd emarat-be
