@@ -37,7 +37,7 @@ Saving your salary & cutting down your expenses these days has always been a cha
 </p>
 <ul>
     <li>
-        <a href="https://docs.google.com/document/d/1CUNwwH057L5qHEiwzAqaLjkEhxY9jk3l5CUgVNI0ogg/edit#heading=h.pvpvwtaj4bmt">
+        <a href="https://docs.google.com/document/d/1kcUljeiSFEqc--C1CuM0VOyiomV3PO5D/edit">
             PRD
         </a>
     </li>
@@ -70,7 +70,7 @@ Built With
 [Node JS] [Express JS] [MongoDB]      [Redis] [Firebase] [Razorpay Payment Gateway] [Heroku]
 Performance, Security, Caching, etc
 
-Please read our coding practices doc here,for complete details on these.
+Please read our coding practices doc <a href="https://docs.google.com/document/d/1RTXOvp3KA_BeCMXf6Uzj5zT9ulwvnU07a1Iy-4eMApo/edit?usp=sharing">here</a>,for complete details on these.
 Getting Started
 Prerequisites
 
