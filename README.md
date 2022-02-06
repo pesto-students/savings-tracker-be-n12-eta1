@@ -35,63 +35,70 @@ Table of Contents
 <p>
 Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.
 </p>
-<ul>
-    <li>
-        <a href="https://docs.google.com/document/d/1kcUljeiSFEqc--C1CuM0VOyiomV3PO5D/edit" target="_blank">
-            PRD
-        </a>
-    </li>
-    <li>
-        <a href="https://drive.google.com/file/d/1xkCJqBz0HjVAuAmiUFomkpqYPJ9FpBvT/view?usp=sharing" target="_blank">
-            HLD
-        </a>
-    </li>
-    <li>
-        <a href="https://drive.google.com/file/d/1S2SYg-KsHpn8S3nchyWbR_9Gj7W0Ptn9/view?usp=sharing" target="_blank">
-            One Pager
-        </a>
-    </li>
-    <li>
-        <a href="https://www.figma.com/proto/9QYFjHDxCVZGkmAPw13bkv/Savings-Tracker-n12-eta-1?node-id=2%3A3&scaling=contain&page-id=0%3A1&starting-point-node-id=2%3A3&show-proto-sidebar=1" target="_blank">
-            Wireframes
-        </a>
-    </li>
-    <li>
-        <a href="https://github.com/pesto-students/savings-tracker-fe-n12-eta1" target="_blank">
-            Frontend Repo
-        </a>
-    </li>
-</ul>
+<div id="artefacts">
+    <h2>Artefacts</h2>
+    <ul>
+        <li>
+            <a href="https://docs.google.com/document/d/1kcUljeiSFEqc--C1CuM0VOyiomV3PO5D/edit" target="_blank">
+                PRD
+            </a>
+        </li>
+        <li>
+            <a href="https://drive.google.com/file/d/1xkCJqBz0HjVAuAmiUFomkpqYPJ9FpBvT/view?usp=sharing" target="_blank">
+                HLD
+            </a>
+        </li>
+        <li>
+            <a href="https://drive.google.com/file/d/1S2SYg-KsHpn8S3nchyWbR_9Gj7W0Ptn9/view?usp=sharing" target="_blank">
+                One Pager
+            </a>
+        </li>
+        <li>
+            <a href="https://www.figma.com/proto/9QYFjHDxCVZGkmAPw13bkv/Savings-Tracker-n12-eta-1?node-id=2%3A3&scaling=contain&page-id=0%3A1&starting-point-node-id=2%3A3&show-proto-sidebar=1" target="_blank">
+                Wireframes
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/pesto-students/savings-tracker-fe-n12-eta1" target="_blank">
+                Frontend Repo
+            </a>
+        </li>
+    </ul>
+</div>
 
 Primary DB : MongoDB
 Social Feeds : Firebase Realtime Database
-Built With
+<div id="build-with">
+    <h2>Built With</h2>
 
-<a href="https://drive.google.com/file/d/1saRysCjbpSXjq8Ezriu0MoQHzU_LytLv/view?usp=sharing" target="_blank">[Node JS] [Express JS] [MongoDB]      [Redis] [Firebase] [Razorpay Payment Gateway] [Heroku]
-  Performance, Security, Caching, etc</a>
+    <a href="https://drive.google.com/file/d/1saRysCjbpSXjq8Ezriu0MoQHzU_LytLv/view?usp=sharing" target="_blank">[Node JS] [Express JS] [MongoDB]      [Redis] [Firebase] [Razorpay Payment Gateway] [Heroku]
+    Performance, Security, Caching, etc</a>
+</div>
+<div id="coding-practices">
+    <h2>Coding Practices</h2>
+    Please read our coding practices doc <a  target="_blank" href="https://docs.google.com/document/d/1RTXOvp3KA_BeCMXf6Uzj5zT9ulwvnU07a1Iy-4eMApo/edit?usp=sharing">here</a>for complete details on these.
+    Getting Started
+    Prerequisites
 
-Please read our coding practices doc <a  target="_blank" href="https://docs.google.com/document/d/1RTXOvp3KA_BeCMXf6Uzj5zT9ulwvnU07a1Iy-4eMApo/edit?usp=sharing">here</a>for complete details on these.
-Getting Started
-Prerequisites
+        Node JS
+        NPM
 
-    Node JS
-    NPM
+    1. Clone the project from github
 
-1. Clone the project from github
+    git clone https://github.com/pesto-students/savings-tracker-be-n12-eta1
+    2. Navigate to folder
 
-git clone https://github.com/pesto-students/savings-tracker-be-n12-eta1
-2. Navigate to folder
+    cd emarat-be
+    3. Install the dependencies
 
-cd emarat-be
-3. Install the dependencies
+    npm install
+    5. Set environment variables
 
-npm install
-5. Set environment variables
+    Make a new file named .env in the folder config and paste the contents of this doc in it.
+    6. Start the server
 
-Make a new file named .env in the folder config and paste the contents of this doc in it.
-6. Start the server
-
-npm run dev
+    npm run dev
+</div>
 <h1>Credentials</h1>
 
 To login in the app as admin use no. 9999999999 and otp 111111
