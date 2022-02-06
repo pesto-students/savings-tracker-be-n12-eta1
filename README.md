@@ -1,29 +1,29 @@
 <h1 style="margin-left:200px">Saving Tracker Backend</h1>
 
 Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.
-                                        <h1><a href="https://savings-tracker-111.netlify.app">Live URL</a></h1>
+                                        <h1><a href="https://savings-tracker-111.netlify.app"  target="_blank">Live URL</a></h1>
 Table of Contents
 <ul>
     <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#about-the-project">About The Project</a>
+        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#about-the-project" target="_blank">About The Project</a>
     </li>
     <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#artefacts"> Artefacts</a>
+        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#artefacts" target="_blank"> Artefacts</a>
     </li>
     <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#schema-design">Schema Design</a>
+        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#schema-design" target="_blank">Schema Design</a>
     </li>
     <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#build-with">Built With</a>
+        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#build-with" target="_blank">Built With</a>
     </li>
     <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#performance">Performance</a>
+        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#performance" target="_blank">Performance</a>
     </li>
     <li>
-    <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#getting-started">Getting Started</a>
+    <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#getting-started" target="_blank">Getting Started</a>
     </li>
     <li>
-    <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#contributors"> Contributors</a>
+    <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#contributors" target="_blank"> Contributors</a>
     </li>
 </ul>
   
@@ -37,27 +37,27 @@ Saving your salary & cutting down your expenses these days has always been a cha
 </p>
 <ul>
     <li>
-        <a href="https://docs.google.com/document/d/1kcUljeiSFEqc--C1CuM0VOyiomV3PO5D/edit">
+        <a href="https://docs.google.com/document/d/1kcUljeiSFEqc--C1CuM0VOyiomV3PO5D/edit" target="_blank">
             PRD
         </a>
     </li>
     <li>
-        <a href="https://drive.google.com/file/d/1xkCJqBz0HjVAuAmiUFomkpqYPJ9FpBvT/view?usp=sharing">
+        <a href="https://drive.google.com/file/d/1xkCJqBz0HjVAuAmiUFomkpqYPJ9FpBvT/view?usp=sharing" target="_blank">
             HLD
         </a>
     </li>
     <li>
-        <a href="https://drive.google.com/file/d/1S2SYg-KsHpn8S3nchyWbR_9Gj7W0Ptn9/view?usp=sharing">
+        <a href="https://drive.google.com/file/d/1S2SYg-KsHpn8S3nchyWbR_9Gj7W0Ptn9/view?usp=sharing" target="_blank">
             One Pager
         </a>
     </li>
     <li>
-        <a href="https://www.figma.com/proto/9QYFjHDxCVZGkmAPw13bkv/Savings-Tracker-n12-eta-1?node-id=2%3A3&scaling=contain&page-id=0%3A1&starting-point-node-id=2%3A3&show-proto-sidebar=1">
+        <a href="https://www.figma.com/proto/9QYFjHDxCVZGkmAPw13bkv/Savings-Tracker-n12-eta-1?node-id=2%3A3&scaling=contain&page-id=0%3A1&starting-point-node-id=2%3A3&show-proto-sidebar=1" target="_blank">
             Wireframes
         </a>
     </li>
     <li>
-        <a href="https://github.com/pesto-students/savings-tracker-fe-n12-eta1">
+        <a href="https://github.com/pesto-students/savings-tracker-fe-n12-eta1" target="_blank">
             Frontend Repo
         </a>
     </li>
@@ -67,10 +67,10 @@ Primary DB : MongoDB
 Social Feeds : Firebase Realtime Database
 Built With
 
-[Node JS] [Express JS] [MongoDB]      [Redis] [Firebase] [Razorpay Payment Gateway] [Heroku]
-Performance, Security, Caching, etc
+<a href="https://drive.google.com/file/d/1saRysCjbpSXjq8Ezriu0MoQHzU_LytLv/view?usp=sharing" target="_blank">[Node JS] [Express JS] [MongoDB]      [Redis] [Firebase] [Razorpay Payment Gateway] [Heroku]
+  Performance, Security, Caching, etc</a>
 
-Please read our coding practices doc <a href="https://docs.google.com/document/d/1RTXOvp3KA_BeCMXf6Uzj5zT9ulwvnU07a1Iy-4eMApo/edit?usp=sharing">here</a>,for complete details on these.
+Please read our coding practices doc <a  target="_blank" href="https://docs.google.com/document/d/1RTXOvp3KA_BeCMXf6Uzj5zT9ulwvnU07a1Iy-4eMApo/edit?usp=sharing">here</a>for complete details on these.
 Getting Started
 Prerequisites
 
