@@ -1,7 +1,8 @@
 <h1 style="margin-left:200px">Saving Tracker Backend</h1>
-
-Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.
-                                        <h1><a href="https://savings-tracker-111.netlify.app"  target="_blank">Live URL</a></h1>
+<p>A quick and easy way to get started with your  
+financial goals planning and tracking spends
+</p>
+                                        <h1 style="margin-left:200px"><a href="https://savings-tracker-111.netlify.app"  target="_blank">Live URL</a></h1>
 Table of Contents
 <ul>
     <li>
@@ -29,7 +30,7 @@ Table of Contents
   
 
 <div id="about-the-project">
-  <h2>About The Project<h2>
+  <h2>About The Project</h2>
    <p>
     Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.
     </p>
