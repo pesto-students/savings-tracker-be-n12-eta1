@@ -30,7 +30,7 @@ Table of Contents
   
 
 <div id="about-the-project">
-  <h2>About The Project<h2>
+  <h2>About The Project</h2>
    <p>
     Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.
     </p>
@@ -149,4 +149,8 @@ Social Feeds : Firebase Realtime Database
     Karandeep Singh - GiHub - <a href="mailto:karannnnn@yahoo.com" >Email</a>
     <br>
     Haris Patidar - GiHub - <a href="mailto:patidarharish08@gmail.com" >Email</a>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> origin/master
