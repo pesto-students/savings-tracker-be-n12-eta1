@@ -149,8 +149,4 @@ Social Feeds : Firebase Realtime Database
     Karandeep Singh - GiHub - <a href="mailto:karannnnn@yahoo.com" >Email</a>
     <br>
     Haris Patidar - GiHub - <a href="mailto:patidarharish08@gmail.com" >Email</a>
-<<<<<<< HEAD
 </div>
-=======
-</div>
->>>>>>> origin/master
