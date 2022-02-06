@@ -30,8 +30,7 @@ Table of Contents
 
 <div id="about-the-project">
   <h2>About The Project<h2>
-
-    <p>
+   <p>
     Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.
     </p>
 </div>
@@ -70,43 +69,77 @@ Primary DB : MongoDB
 Social Feeds : Firebase Realtime Database
 <div id="build-with">
     <h2>Built With</h2>
-
-    <a href="https://drive.google.com/file/d/1saRysCjbpSXjq8Ezriu0MoQHzU_LytLv/view?usp=sharing" target="_blank">[Node JS] [Express JS] [MongoDB]      [Redis] [Firebase] [Razorpay Payment Gateway] [Heroku]
-    Performance, Security, Caching, etc</a>
+    <a href="https://drive.google.com/file/d/1saRysCjbpSXjq8Ezriu0MoQHzU_LytLv/view?usp=sharing" target="_blank">
+        <ul>
+            <li>Frontend: 
+            React, Redux, Bootstrap, Billboard.js (charts)
+            </li>
+            <li>
+            Auth:
+            Firebase
+            </li>
+            <li>
+            Backend:
+            Node.js, Express, Mongoose
+            </li>
+            <li>
+            DataBase:
+            MongoDB
+            </li>
+            <li>
+            Deployment:
+            Heroku
+            </li>
+            <li>
+            CI/CD:
+            Github
+            </li>
+            <li>
+            Payment Gateway:
+            Razorpay
+            </li>
+        </ul>
+    </a>
 </div>
 <div id="coding-practices">
     <h2>Coding Practices</h2>
-    Please read our coding practices doc <a  target="_blank" href="https://docs.google.com/document/d/1RTXOvp3KA_BeCMXf6Uzj5zT9ulwvnU07a1Iy-4eMApo/edit?usp=sharing">here</a>for complete details on these.
+    Please read our coding practices doc <a target="_blank" href="https://docs.google.com/document/d/1RTXOvp3KA_BeCMXf6Uzj5zT9ulwvnU07a1Iy-4eMApo/edit?usp=sharing">here</a>for complete details on these.
 </div>
 <div id="getting-started">
 <h2>Getting Started</h2>
-    
-    Prerequisites
-
-        Node JS
-        NPM
-
-    1. Clone the project from github
-
+    <ul>
+        <li>
+            <h3>Prerequisites</h3>               
+                NodeJS NPM
+        </li>
+        <li>
+        1. Clone the project from github<br>
     git clone https://github.com/pesto-students/savings-tracker-be-n12-eta1
-    2. Navigate to folder
-
-    cd emarat-be
-    3. Install the dependencies
-
+        </li>
+        <li>
+        2. Navigate to folder<br>
+    cd server
+        </li>     
+        <li>
+        3. Install the dependencies<br>
     npm install
-    5. Set environment variables
-
+        </li>
+        <li>
+        4. Set environment variables<br>
     Make a new file named .env in the folder config and paste the contents of this doc in it.
-    6. Start the server
-
+        </li>
+        <li>
+            5. Start the server<br>
     npm run dev
+        </li>
+    </ul>
 </div>
 <div id="credentials">
     <h1>Credentials</h1>
+    <p>To login in the app as admin use no. 9999999999 and otp 111111</p>
 </div>
 
-To login in the app as admin use no. 9999999999 and otp 111111
+
 <div id="contributors">
     <h1>Contributors</h1>
     <br>
