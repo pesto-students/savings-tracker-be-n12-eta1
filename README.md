@@ -11,16 +11,16 @@ Table of Contents
         <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#artefacts" target="_blank"> Artefacts</a>
     </li>
     <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#schema-design" target="_blank">Schema Design</a>
-    </li>
-    <li>
         <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#build-with" target="_blank">Built With</a>
     </li>
     <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#performance" target="_blank">Performance</a>
+        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#coding-practices" target="_blank">Coding Practices</a>
     </li>
     <li>
     <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#getting-started" target="_blank">Getting Started</a>
+    </li>
+    <li>
+        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#credentials" target="_blank">Credentials</a>
     </li>
     <li>
     <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#contributors" target="_blank"> Contributors</a>
@@ -30,11 +30,11 @@ Table of Contents
 
 <div id="about-the-project">
   <h2>About The Project<h2>
-</div>
 
-<p>
-Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.
-</p>
+    <p>
+    Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.
+    </p>
+</div>
 <div id="artefacts">
     <h2>Artefacts</h2>
     <ul>
@@ -77,7 +77,10 @@ Social Feeds : Firebase Realtime Database
 <div id="coding-practices">
     <h2>Coding Practices</h2>
     Please read our coding practices doc <a  target="_blank" href="https://docs.google.com/document/d/1RTXOvp3KA_BeCMXf6Uzj5zT9ulwvnU07a1Iy-4eMApo/edit?usp=sharing">here</a>for complete details on these.
-    Getting Started
+</div>
+<div id="getting-started">
+<h2>Getting Started</h2>
+    
     Prerequisites
 
         Node JS
@@ -99,14 +102,17 @@ Social Feeds : Firebase Realtime Database
 
     npm run dev
 </div>
-<h1>Credentials</h1>
+<div id="credentials">
+    <h1>Credentials</h1>
+</div>
 
 To login in the app as admin use no. 9999999999 and otp 111111
-
-<h1>Contributors</h1>
-<br>
-Kashifa Khan - GiHub - <a href="mailto:khankashifa.1996@gmail.com" >Email<a>
-<br>
-Karandeep Singh - GiHub - <a href="mailto:karannnnn@yahoo.com" >Email</a>
-<br>
-Haris Patidar - GiHub - <a href="mailto:patidarharish08@gmail.com" >Email</a>
+<div id="contributors">
+    <h1>Contributors</h1>
+    <br>
+    Kashifa Khan - GiHub - <a href="mailto:khankashifa.1996@gmail.com" >Email<a>
+    <br>
+    Karandeep Singh - GiHub - <a href="mailto:karannnnn@yahoo.com" >Email</a>
+    <br>
+    Haris Patidar - GiHub - <a href="mailto:patidarharish08@gmail.com" >Email</a>
+</div>
