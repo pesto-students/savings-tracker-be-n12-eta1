@@ -12,75 +12,76 @@ financial goals planning and tracking spends
 Welcome! we hope you enjoy the site as much as we enjoyed making it.
 <!-- TABLE OF CONTENTS -->
 <br/>
+<!-- TABLE OF CONTENTS -->
+<br/>
 
 # Table of Contents
 
+1. [Demo](#demo)
+2. [Installation](#installation)
+3. [Technology Stack](#technology-stack)
+4. [Authors](#authors)
+5. [License](#license)
+
 <br/>
-<ul>
-    <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#about-the-project" target="_blank">About The Project</a>
-    </li>
-    <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#artefacts" target="_blank"> Artefacts</a>
-    </li>
-    <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#build-with" target="_blank">Built With</a>
-    </li>
-    <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#coding-practices" target="_blank">Coding Practices</a>
-    </li>
-    <li>
-    <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#getting-started" target="_blank">Getting Started</a>
-    </li>
-    <li>
-        <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#credentials" target="_blank">Credentials</a>
-    </li>
-    <li>
-    <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#contributors" target="_blank"> Contributors</a>
-    </li>
-</ul>
 # Demo
 
 [Live Demo](https://savings-tracker-111.netlify.app/)
 <br/>  
 
-<div id="about-the-project">
-  <h2>About The Project</h2>
-   <p>
-    Saving your salary & cutting down your expenses these days has always been a challenge, and saving money without a goal can be a tough task. We came up with a solution of a Savings Tracker, which can provide you with a visual representation of your earnings, savings & expenses and also allows you to create and track financial goals.
-    </p>
-</div>
-<div id="artefacts">
-    <h2>Artefacts</h2>
-    <ul>
-        <li>
-            <a href="https://docs.google.com/document/d/1kcUljeiSFEqc--C1CuM0VOyiomV3PO5D/edit" target="_blank">
-                PRD
-            </a>
-        </li>
-        <li>
-            <a href="https://drive.google.com/file/d/1xkCJqBz0HjVAuAmiUFomkpqYPJ9FpBvT/view?usp=sharing" target="_blank">
-                HLD
-            </a>
-        </li>
-        <li>
-            <a href="https://drive.google.com/file/d/1S2SYg-KsHpn8S3nchyWbR_9Gj7W0Ptn9/view?usp=sharing" target="_blank">
-                One Pager
-            </a>
-        </li>
-        <li>
-            <a href="https://www.figma.com/proto/9QYFjHDxCVZGkmAPw13bkv/Savings-Tracker-n12-eta-1?node-id=2%3A3&scaling=contain&page-id=0%3A1&starting-point-node-id=2%3A3&show-proto-sidebar=1" target="_blank">
-                Wireframes
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/pesto-students/savings-tracker-fe-n12-eta1" target="_blank">
-                Frontend Repo
-            </a>
-        </li>
-    </ul>
-</div>
+Please Note:
 
+1. We recommend using this app in Google Chrome
+
+<br/>
+Test Credentials:
+
+- For User
+ 	 - Phone Number: 9999999999
+ 	 - OTP: 111111
+<br/>
+
+# Installation
+. Clone the repo
+    ```sh
+    https://github.com/pesto-students/savings-tracker-be-n12-eta1
+    ```
+2. Set environment variables
+
+MONGO_URL=</br>
+PORT=5000
+EMAIL_ID=savingtrackers@gmail.com
+EMAIL_PASSWORD=</br>
+FIREBASE_CREDENTIAL_TYPE=<br/>
+FIREBASE_CREDENTIAL_PROJECT_ID=<br/>
+FIREBASE_CREDENTIAL_PRIVATE_KEY_ID=<br/>
+FIREBASE_CREDENTIAL_PRIVATE_KEY=<br/>
+FIREBASE_CREDENTIAL_CLIENT_EMAIL=<br/>
+FIREBASE_CREDENTIAL_CLIENT_ID=<br/>
+FIREBASE_CREDENTIAL_AUTH_URI=<br/>
+FIREBASE_CREDENTIAL_TOKEN_URI=<br/>
+RAZORPAY_KEY_ID=<br/>
+RAZORPAY_KEY_SECRET=<br/>
+RAZORPAY_SUBSCRIPTION_PLAN_ID=<br/>
+RAZORPAY_WEBHOOK_SECRET=<br/>  
+
+3. Install NPM packages
+    ```sh
+    cd savings-tracker-be-n12-eta1 && npm install
+    ```
+4. Run
+    ```sh
+    npm run dev
+    ```
+5. Open http://localhost:3000 to view it in the browser
+
+6. Run Test cases
+    ```sh
+    npm test
+    ```
+<br/>
+
+# Technology Stack
 Primary DB : MongoDB
 Social Feeds : Firebase Realtime Database
 <div id="build-with">
@@ -117,54 +118,16 @@ Social Feeds : Firebase Realtime Database
         </ul>
     </a>
 </div>
-<div id="coding-practices">
-    <h2>Coding Practices</h2>
-    Please read our coding practices doc <a target="_blank" href="https://docs.google.com/document/d/1RTXOvp3KA_BeCMXf6Uzj5zT9ulwvnU07a1Iy-4eMApo/edit?usp=sharing">here</a>for complete details on these.
-</div>
-<div id="getting-started">
-<h2>Getting Started</h2>
-    <ul>
-        <li>
-            <h3>Prerequisites</h3>               
-                NodeJS NPM
-        </li>
-        <li>
-        1. Clone the project from github<br>
-    git clone https://github.com/pesto-students/savings-tracker-be-n12-eta1
-        </li>
-        <li>
-        2. Navigate to folder<br>
-    cd server
-        </li>     
-        <li>
-        3. Install the dependencies<br>
-    npm install
-        </li>
-        <li>
-        4. Set environment variables<br>
-    Make a new file named .env in the folder config and paste the contents of this doc in it.
-        </li>
-        <li>
-            5. Start the server<br>
-    npm run dev
-        </li>
-    </ul>
-</div>
-<div id="credentials">
-    <h1>Credentials</h1>
-    <p>To login in the app as admin use no. 9999999999 and otp 111111</p>
-</div>
 
+<br/>
 
-<div id="contributors">
-    <h1>Contributors</h1>
-    <br>
-    Kashifa Khan - GiHub - <a href="mailto:khankashifa.1996@gmail.com" >Email<a>
-    <br>
-    Karandeep Singh - GiHub - <a href="mailto:karannnnn@yahoo.com" >Email</a>
-    <br>
-    Haris Patidar - GiHub - <a href="mailto:patidarharish08@gmail.com" >Email</a>
-</div>
+# Authors
+
+- [Kashifa Khan](https://github.com/kashifakhan1996/)
+- [Karandeep Singh](https://github.com/karan-2809/)
+- [Haris Patidar](https://github.com/rjharish333) 
+
+<br/>
 
 # License
 
