@@ -1,7 +1,17 @@
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+    <img src="https://savings-tracker-111.netlify.app/static/media/logo.7835c574029d421e4eaf.png" alt="Logo" width="400" height="200" >
+</p>
 <div style="margin-left:200px"><h1 >Saving Tracker Backend</h1></div>
 <p>A quick and easy way to get started with your  
 financial goals planning and tracking spends
 </p>
+
+
+Welcome! we hope you enjoy the site as much as we enjoyed making it.
+
+
 <h1><a href="https://savings-tracker-111.netlify.app"  target="_blank">Live URL</a></h1>
 Table of Contents
 <ul>
