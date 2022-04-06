@@ -10,10 +10,12 @@ financial goals planning and tracking spends
 
 
 Welcome! we hope you enjoy the site as much as we enjoyed making it.
+<!-- TABLE OF CONTENTS -->
+<br/>
 
+# Table of Contents
 
-<h1><a href="https://savings-tracker-111.netlify.app"  target="_blank">Live URL</a></h1>
-Table of Contents
+<br/>
 <ul>
     <li>
         <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#about-the-project" target="_blank">About The Project</a>
@@ -37,7 +39,10 @@ Table of Contents
     <a href="https://github.com/pesto-students/savings-tracker-be-n12-eta1/#contributors" target="_blank"> Contributors</a>
     </li>
 </ul>
-  
+# Demo
+
+[Live Demo](https://savings-tracker-111.netlify.app/)
+<br/>  
 
 <div id="about-the-project">
   <h2>About The Project</h2>
