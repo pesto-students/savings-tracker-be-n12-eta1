@@ -165,3 +165,7 @@ Social Feeds : Firebase Realtime Database
     <br>
     Haris Patidar - GiHub - <a href="mailto:patidarharish08@gmail.com" >Email</a>
 </div>
+
+# License
+
+[MIT](https://opensource.org/licenses/MIT)
