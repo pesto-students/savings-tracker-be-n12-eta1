@@ -84,40 +84,11 @@ RAZORPAY_WEBHOOK_SECRET=<br/>
 # Technology Stack
 Primary DB : MongoDB
 Social Feeds : Firebase Realtime Database
-<div id="build-with">
-    <h2>Built With</h2>
-    <a href="https://drive.google.com/file/d/1saRysCjbpSXjq8Ezriu0MoQHzU_LytLv/view?usp=sharing" target="_blank">
-        <ul>
-            <li>Frontend: 
-            React, Redux, Bootstrap, Billboard.js (charts)
-            </li>
-            <li>
-            Auth:
-            Firebase
-            </li>
-            <li>
-            Backend:
-            Node.js, Express, Mongoose
-            </li>
-            <li>
-            DataBase:
-            MongoDB
-            </li>
-            <li>
-            Deployment:
-            Heroku
-            </li>
-            <li>
-            CI/CD:
-            Github
-            </li>
-            <li>
-            Payment Gateway:
-            Razorpay
-            </li>
-        </ul>
-    </a>
-</div>
+We tried to use a completely modern tech stack while testing out some new technologies that we had never used before. This resulted in a fast, performant, and easily-extensible web app that should be fairly future-proof for the coming next several years. We used:
+
+- [FireBase](https://firebase.google.com/)
+- [Axios](https://axios-http.com/docs/intro)
+- [React](https://reactjs.org/)
 
 <br/>
 
